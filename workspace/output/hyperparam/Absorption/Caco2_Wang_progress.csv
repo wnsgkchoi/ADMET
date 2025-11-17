@@ -1,0 +1,14 @@
+experiment_id,lr,dropout_ratio,batch_size,num_experts,alpha,beta,min_temp,decay,num_layer,emb_dim,gate_dim,split_type,val_metric,val_metric_std,test_metric,test_metric_std,num_epochs_trained,early_stopped,timestamp
+enhanced_feat_exp002,0.001,0.0,512,7,0.1,0.01,0.1,0.0001,5,300,50,scaffold,0.3559,,5.1960,,85,True,2025-11-15 11:40:57
+enhanced_feat_exp004,0.0001,0.3,512,7,0.1,0.01,1.0,0.0,5,300,50,scaffold,4.4836,,4.6154,,100,False,2025-11-15 11:42:25
+enhanced_feat_exp006,0.0001,0.0,512,3,0.01,0.01,1.0,0.0001,5,300,50,scaffold,4.0275,,4.1538,,100,False,2025-11-15 11:43:06
+enhanced_feat_exp007,0.001,0.3,512,5,0.1,0.01,1.0,0.0,5,300,50,scaffold,0.3839,,4.9371,,91,True,2025-11-15 11:43:22
+enhanced_feat_exp018,0.001,0.3,512,7,1.0,1.0,0.1,0.0001,5,300,50,scaffold,0.3931,,4.6262,,84,True,2025-11-15 11:48:14
+enhanced_feat_exp021,0.0001,0.0,512,3,0.01,0.1,0.1,0.0,5,300,50,scaffold,3.9226,,4.2992,,100,False,2025-11-15 11:50:07
+enhanced_feat_exp023,0.001,0.3,512,3,0.01,1.0,1.0,0.0001,5,300,50,scaffold,0.4497,,2.3354,,100,False,2025-11-15 11:50:39
+enhanced_feat_exp027,0.0001,0.0,512,3,0.01,0.1,1.0,0.0001,5,300,50,scaffold,4.0293,,4.1546,,100,False,2025-11-15 11:52:36
+enhanced_feat_exp034,0.0001,0.3,512,5,0.1,0.01,1.0,0.0001,5,300,50,scaffold,4.4298,,4.9053,,100,False,2025-11-15 11:55:45
+enhanced_feat_exp046,0.001,0.3,512,3,0.01,0.01,0.1,0.0001,5,300,50,scaffold,0.4377,,4.7747,,100,False,2025-11-15 12:01:29
+enhanced_feat_exp047,0.001,0.3,512,5,0.1,1.0,1.0,0.0001,5,300,50,scaffold,0.3686,,1.8262,,100,False,2025-11-15 12:01:42
+enhanced_feat_exp048,0.0001,0.0,512,3,1.0,0.1,0.1,0.0,5,300,50,scaffold,3.9882,,4.3043,,100,False,2025-11-15 12:02:29
+enhanced_final,0.001,0.3,512,5,0.1,1.0,1.0,0.0001,5,300,50,scaffold,,,0.3665,,268,True,2025-11-16 08:27:40

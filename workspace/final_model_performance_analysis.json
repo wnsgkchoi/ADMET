@@ -1,0 +1,277 @@
+{
+  "summary": {
+    "total_datasets": 33,
+    "classification_datasets": 21,
+    "regression_datasets": 12,
+    "avg_auroc": 77.03166289563511,
+    "avg_mae": 7.929353455702464,
+    "total_size_mb": 851.5068502426147,
+    "avg_size_mb": 25.80323788613984
+  },
+  "detailed_results": {
+    "Caco2_Wang": {
+      "category": "Absorption",
+      "task_type": "regression",
+      "metric_name": "MAE",
+      "test_metric": 0.36645498871803284,
+      "file_size_mb": 21.97770595550537,
+      "total_samples": 910
+    },
+    "Pgp_Broccatelli": {
+      "category": "Absorption",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 85.49053585710476,
+      "file_size_mb": 22.06321620941162,
+      "total_samples": 1218
+    },
+    "HIA_Hou": {
+      "category": "Absorption",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 91.48148148148148,
+      "file_size_mb": 21.95042324066162,
+      "total_samples": 578
+    },
+    "Bioavailability_Ma": {
+      "category": "Absorption",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 57.46591286997006,
+      "file_size_mb": 21.95262050628662,
+      "total_samples": 640
+    },
+    "Solubility_AqSolDB": {
+      "category": "Absorption",
+      "task_type": "regression",
+      "metric_name": "MAE",
+      "test_metric": 0.9551022052764893,
+      "file_size_mb": 22.40360927581787,
+      "total_samples": 9982
+    },
+    "Lipophilicity_AstraZeneca": {
+      "category": "Absorption",
+      "task_type": "regression",
+      "metric_name": "MAE",
+      "test_metric": 0.4903300106525421,
+      "file_size_mb": 22.74638271331787,
+      "total_samples": 4200
+    },
+    "HydrationFreeEnergy_FreeSolv": {
+      "category": "Absorption",
+      "task_type": "regression",
+      "metric_name": "MAE",
+      "test_metric": 1.094926118850708,
+      "file_size_mb": 21.82279872894287,
+      "total_samples": 642
+    },
+    "PAMPA_NCATS": {
+      "category": "Absorption",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 71.60958022147824,
+      "file_size_mb": 22.38694667816162,
+      "total_samples": 2034
+    },
+    "VDss_Lombardo": {
+      "category": "Distribution",
+      "task_type": "regression",
+      "metric_name": "MAE",
+      "test_metric": 1.9333432912826538,
+      "file_size_mb": 22.09397792816162,
+      "total_samples": 1130
+    },
+    "PPBR_AZ": {
+      "category": "Distribution",
+      "task_type": "regression",
+      "metric_name": "MAE",
+      "test_metric": 8.89462661743164,
+      "file_size_mb": 22.22032070159912,
+      "total_samples": 1614
+    },
+    "BBB_Martins": {
+      "category": "Distribution",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 84.15025015634771,
+      "file_size_mb": 22.21464443206787,
+      "total_samples": 2030
+    },
+    "CYP2C9_Veith": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 85.11396123585328,
+      "file_size_mb": 24.69352626800537,
+      "total_samples": 12092
+    },
+    "CYP2C9_Substrate_CarbonMangels": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 69.66901790558872,
+      "file_size_mb": 21.96018886566162,
+      "total_samples": 669
+    },
+    "CYP3A4_Veith": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 79.51383652415302,
+      "file_size_mb": 24.75468349456787,
+      "total_samples": 12328
+    },
+    "CYP2D6_Veith": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 84.10382299505,
+      "file_size_mb": 25.21720790863037,
+      "total_samples": 13130
+    },
+    "CYP2D6_Substrate_CarbonMangels": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 78.95601617795754,
+      "file_size_mb": 21.95939540863037,
+      "total_samples": 667
+    },
+    "CYP2C19_Veith": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 85.63074985425649,
+      "file_size_mb": 24.78452968597412,
+      "total_samples": 12665
+    },
+    "CYP3A4_Substrate_CarbonMangels": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 62.25135623869801,
+      "file_size_mb": 21.95432949066162,
+      "total_samples": 670
+    },
+    "CYP1A2_Veith": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 90.37887206556466,
+      "file_size_mb": 24.82572841644287,
+      "total_samples": 12579
+    },
+    "Clearance_Hepatocyte_AZ": {
+      "category": "Excretion",
+      "task_type": "regression",
+      "metric_name": "MAE",
+      "test_metric": 30.972354888916016,
+      "file_size_mb": 22.09745693206787,
+      "total_samples": 1213
+    },
+    "Half_Life_Obach": {
+      "category": "Excretion",
+      "task_type": "regression",
+      "metric_name": "MAE",
+      "test_metric": 7.993862152099609,
+      "file_size_mb": 21.96635341644287,
+      "total_samples": 667
+    },
+    "Clearance_Microsome_AZ": {
+      "category": "Excretion",
+      "task_type": "regression",
+      "metric_name": "MAE",
+      "test_metric": 22.827836990356445,
+      "file_size_mb": 22.09562587738037,
+      "total_samples": 1102
+    },
+    "hERG": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 67.2901325478645,
+      "file_size_mb": 21.95884609222412,
+      "total_samples": 655
+    },
+    "Carcinogens_Lagunin": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 74.74747474747474,
+      "file_size_mb": 21.84403896331787,
+      "total_samples": 280
+    },
+    "hERG_Central_inhib": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 83.98026149946953,
+      "file_size_mb": 57.59007167816162,
+      "total_samples": 306893
+    },
+    "hERG_Karim": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 78.68578056848534,
+      "file_size_mb": 24.47050380706787,
+      "total_samples": 13445
+    },
+    "ClinTox": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 56.40262515262515,
+      "file_size_mb": 22.08189296722412,
+      "total_samples": 1478
+    },
+    "LD50_Zhu": {
+      "category": "Toxicity",
+      "task_type": "regression",
+      "metric_name": "MAE",
+      "test_metric": 0.5712029337882996,
+      "file_size_mb": 22.24503993988037,
+      "total_samples": 7385
+    },
+    "hERG_Central_10uM": {
+      "category": "Toxicity",
+      "task_type": "regression",
+      "metric_name": "MAE",
+      "test_metric": 12.492450714111328,
+      "file_size_mb": 57.59007167816162,
+      "total_samples": 306893
+    },
+    "DILI": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 85.86956521739131,
+      "file_size_mb": 21.89933681488037,
+      "total_samples": 475
+    },
+    "Skin_Reaction": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 66.13981762917933,
+      "file_size_mb": 21.79588222503662,
+      "total_samples": 404
+    },
+    "hERG_Central_1uM": {
+      "category": "Toxicity",
+      "task_type": "regression",
+      "metric_name": "MAE",
+      "test_metric": 6.559750556945801,
+      "file_size_mb": 57.59007167816162,
+      "total_samples": 306893
+    },
+    "AMES": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric_name": "AUROC",
+      "test_metric": 78.73386986234311,
+      "file_size_mb": 22.29942226409912,
+      "total_samples": 7278
+    }
+  }
+}
