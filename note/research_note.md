@@ -104,6 +104,159 @@ TopExpert 기반으로 multi-class classification과 regression이 정상적으�
 
 정량적 연구개발성과에는 뭘 적어야 할지 모르겠다. 일단 박사님과 논의를 해보면 좋을 듯하다.  
 
+## 2025.11.17. - 2025.11.18  
+
 ![Criterion](pic/eval_criterion.png)  
 
-이 기준에 맞는 모델을 구현해야 한다. 일단 ADMET 관련해서는 어떻게 잘 될 것 같은데, 문제는 다른 데이터셋이다. 타 데이터셋이 어떤 데이터셋인지도 잘 모르겠고, 해당 데이터셋에 대해 저 정도의 성능을 뽑을 자신도 없다.  
+이 기준이 있었다는 사실을 방금 떠올렸다... 청년 치매인가..?  
+아무튼, 이 기준에 맞는 모델을 구현해야 한다. 일단 ADMET 관련해서는 어떻게 잘 될 것 같은데, 문제는 다른 데이터셋이다. 타 데이터셋이 어떤 데이터셋인지도 잘 모르겠고, 해당 데이터셋에 대해 저 정도의 성능을 뽑을 자신도 없다.  
+
+### 성능 개선 필요  
+
+일단 일부 데이터셋에 대해 전혀 좋지 않은 결과가 나오고 있다.  
+Classification의 경우 다음 데이터셋이 기준치인 AUROC 80을 넘기지 못하고 있다.  
+- Carcinogens_Lagunin
+- PAMPA_NCATS  
+- CYP2C9_Substrate_CarbonMangels  
+- hERG  
+- Skin_Reaction  
+- CYP3A4_Substrate_CarbonMangels  
+- Bioavailability_Ma  
+- ClinTox  
+
+모델의 출력을 확인해보지 않아서 (확인하는 방법을 모름..) 무엇이 문제인지 확신할 수는 없지만, 일단 개인적으로 생각하는 원인은 다음과 같다.  
+
+#### 1. ClinTox  
+데이터셋 불균형 이슈  
+Y Distribution:
+  - Class 0: 1366 (92.42%)
+  - Class 1: 112 (7.58%)
+
+#### 2. Bioavailability_Ma  
+데이터셋 불균형 이슈  
+Y Distribution:
+  - Class 1: 492 (76.88%)
+  - Class 0: 148 (23.12%)
+
+#### 3. CYP3A4_Substrate_CarbonMangels  
+적어도 데이터셋 불균형의 문제는 아닌 것으로 보임. 다른 이유는 모르겠음.  
+Y Distribution:
+  - Class 1: 355 (52.99%)
+  - Class 0: 315 (47.01%)  
+
+|class|train|valid|test|overall|
+|-|-|-|-|-|
+|0|231 (49.36%)|28 (41.79%)|35 (42.68%)|56 (41.48%)|
+|1|237 (50.64%)|39 (58.21%)|47 (57.32%)|79 (58.52%)|
+
+참고로 총 25개의 hyperparam exp가 돌아간 지금 확인할 때, valid나 test나 둘 다 처참한 AUROC을 보이고 있다. test_accuracy가 0.6 정도에서 형성되고 있는데, 이는 사실 그냥 찍는 것과 크게 다르지 않은 성능이다. (실제로 test set에 대해 1을 찍으면 58.52의 accuracy) 참고로 valid_accuracy는 더 낮다. 0.5 후반에서 형성되고 있다.  
+
+Early Stop이 False인 실험이 많은 것으로 보아, training step을 늘려 어느 정도 해결할 수 있을 것으로 보인다.  
+
+
+#### 4. Skin_Reaction  
+위의 데이터셋처럼 심하진 않지만 데이터셋이 불균형하긴 함.  
+Y Distribution:
+  - Class 1: 274 (67.82%)
+  - Class 0: 130 (32.18%)
+
+추가로, Train, Valid, Test set에서의 데이터셋 분포는 다음과 같았다.  
+|class|train|valid|test|overall|
+|-|-|-|-|-|
+|0|77 (27.3%)|18 (45%)|35 (42.68%)|130 (32.18%)|
+|1|205 (72.7%)|22 (55%)|47 (57.32%)|274 (67.82%)|
+
+Train set과 다른 분포를 가져서 test set에서의 성능이 낮았을 수 있다. **valid set에 대한 성능도 관찰할 필요가 있다.**  
+
+#### 5. hERG  
+내 기억이 맞다면, hERG는 이전에 이미 tuning한 적 있는 데이터셋이다. 다만, hERG가 종류가 많아서 이 데이터셋이 맞는지는 잘 모르겠다.  
+일단 데이터셋 불균형 문제로부터 어느 정도 자유로운 데이터셋이다. 
+Y Distribution:
+  - Class 1.0: 451 (68.85%)
+  - Class 0.0: 204 (31.15%)  
+
+이 데이터셋의 Train:Valid:Test에 대한 data dist는 다음과 같다.  
+|class|train|valid|test|overall|
+|-|-|-|-|-|
+|0|144 (31.44%)|25 (38.46%)|35 (42.68%)|35 (26.52%)|
+|1|314 (68.56%)|40 (61.54%)|47 (57.32%)|97 (73.48%)|
+
+Train과 test의 데이터셋 분포 정도가 꽤 다름을 알 수 있다. 이것이 문제가 될 수도..?  
+
+#### 6. CYP2C9_Substrate_CarbonMangels  
+
+데이터 불균형 문제가 또 있다.  
+Y Distribution:
+  - Class 0: 528 (78.92%)
+  - Class 1: 141 (21.08%)
+
+#### 7. PAMPA_NCATS  
+
+Y Distribution:
+  - Class 1: 1739 (85.50%)
+  - Class 0: 295 (14.50%)
+
+
+#### 8. Carcinogens_Lagunin  
+
+Y Distribution:
+  - Class 0: 220 (78.57%)
+  - Class 1: 60 (21.43%)  
+
+
+</br></br>
+
+Regression의 경우 다음 데이터셋에서 좋지 않은 성능이 관찰된다. (괄호 안 숫자는 MAE)  
+- Clearance_Hepatocyte_AZ (30.97)  
+- Clearance_Microsome_AZ (22.83)  
+- hERG_Central_10uM (12.49)  
+- PPBR_AZ (8.89)  
+- Half_Life_Obach (7.99)  
+- hERG_Central_1uM (6.56)  
+
+
+|데이터셋|Mean|Std|Min|Max|Num|MAE|
+|-|-|-|-|-|-|-|
+|Clearance_Hepatocyte_AZ|42.9004|49.8473|3.0000|150.0000|1213|30.9724|  
+|Clearance_Microsome_AZ||||||22.8278|
+|hERG_Central_10uM||||||12.4925|
+|PPBR_AZ||||||8.8946|
+|Half_Life_Obach||||||7.9939|
+|hERG_Central_1uM||||||6.5598|
+|VDss_Lombardo||||||1.9333|
+|HydrationFreeEnergy_FreeSolv||||||1.0949|
+|Solubility_AqSolDB||||||0.9551|
+|LD50_Zhu||||||0.5712|
+|Lipophilicity_AstraZeneca||||||0.4903|
+|Caco2_Wang||||||0.3665|
+
+
+##### 해결 방안  
+
+내 짧은 지식으로는, loss function에 어느 정도 가중치를 두는 편이 좋을 듯하다. focal loss를 사용하는 것이 최선이 아닐까?  
+
+#### 내일 할 것  
+
+- 지금 loss를 바꾸기에는 늦은 것 같고(hyperparam tuning을 할 시간이 없다.), 데이터셋에 대한 분석이나 더 하자.  
+    - train:valid:test, 전체에 대한 dist를 table로 정리  
+    - 튜닝 완료된 후 해당 파라미터로 모델 학습 및 test set에 대한 metric 확인  
+    - 모델을 종합하여 input으로 SMILES 문자열이 들어올 때, 33가지 항목에 대해 예측하는 통합 프로그램 작성  
+    - 이전에 받은 prediction dataset의 SMILES에 대해 해당 프로그램 실행 후 결과 분석 (임상 1상 예측 부분)  
+- CYP3A4_Substrate_CarbonMangels 관련 이슈 확인 (상술한 이슈)  
+
+
+#### 현재 상황 (11.18.)  
+
+성능이 안 나온다. random split으로 바꿨는데도 안 되는 데이터셋은 안 된다.  
+
+
+
+
+
+## 잡설  
+
+- 데이터셋 불균형을 해결하는 방법 중 하나로 SMOTE가 있다고 하는데, 이를 화학 분자 쪽으로 어떻게 끌어들일 수는 없을까? 물론 분야가 분야인 만큼 존재하지 않는 데이터를 생성하고 학습하는 매우 위험도가 높긴 하지만.. 일단 잘 된다면 혁명일텐데.  
+- mlp 부분은 현재 설정이 최선인 것일까?  
+- 사실 GNN으로는 분자의 embedding을 생성하고, 이 embedding을 바탕으로 2-layer mlp인 expert에 할당하여 output을 출력하는 구조라고 한다면, 굳이 GNN을 학습시키지 않아도 mlp만 학습시켜서 성능을 올릴 수 있는 건 아닐까..? 이건 너무 무식한 말인가?  
+  - 무식한 것 같긴 한데 그냥 시도해보고 싶긴 함. 아님 말고 식으로 실험 정도는 할 수 있잖아. 만약 아니면 그냥 내가 무식한 것이고. 뭐 무식한 게 죄는 아니니까.  
+- 

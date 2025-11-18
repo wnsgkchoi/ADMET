@@ -1,0 +1,161 @@
+{
+  "total_models": 33,
+  "successful": 33,
+  "classification": {
+    "count": 21,
+    "mean_AUROC": 80.35060952380952,
+    "std_AUROC": 8.483666370031562,
+    "min_AUROC": 64.0823,
+    "max_AUROC": 95.8848,
+    "median_AUROC": 82.0526,
+    "best_model": "HIA_Hou",
+    "best_AUROC": 95.8848,
+    "worst_model": "CYP3A4_Substrate_CarbonMangels",
+    "worst_AUROC": 64.0823
+  },
+  "regression": {
+    "count": 12,
+    "mean_MAE": 7.818083333333334,
+    "std_MAE": 9.256686885600892,
+    "min_MAE": 0.375,
+    "max_MAE": 30.4591,
+    "median_MAE": 4.2486,
+    "mean_R2": 0.290875,
+    "std_R2": 0.27600655525125967,
+    "min_R2": -0.0741,
+    "max_R2": 0.7634,
+    "median_R2": 0.2519,
+    "best_model": "Caco2_Wang",
+    "best_MAE": 0.375,
+    "worst_model": "Clearance_Hepatocyte_AZ",
+    "worst_MAE": 30.4591
+  },
+  "by_category": {
+    "Absorption": {
+      "classification": {
+        "count": 4,
+        "mean_AUROC": 80.8796,
+        "std_AUROC": 12.094945449029524,
+        "min_AUROC": 64.6159,
+        "max_AUROC": 95.8848,
+        "median_AUROC": 81.50885,
+        "best_model": "HIA_Hou",
+        "best_AUROC": 95.8848,
+        "worst_model": "Bioavailability_Ma",
+        "worst_AUROC": 64.6159
+      },
+      "regression": {
+        "count": 4,
+        "mean_MAE": 0.731625,
+        "std_MAE": 0.30620663264371006,
+        "min_MAE": 0.375,
+        "max_MAE": 1.1046,
+        "median_MAE": 0.72345,
+        "mean_R2": 0.624375,
+        "std_R2": 0.10998350728631999,
+        "min_R2": 0.4961,
+        "max_R2": 0.7634,
+        "median_R2": 0.619,
+        "best_model": "Caco2_Wang",
+        "best_MAE": 0.375,
+        "worst_model": "HydrationFreeEnergy_FreeSolv",
+        "worst_MAE": 1.1046
+      }
+    },
+    "Distribution": {
+      "classification": {
+        "count": 1,
+        "mean_AUROC": 84.2108,
+        "std_AUROC": 0.0,
+        "min_AUROC": 84.2108,
+        "max_AUROC": 84.2108,
+        "median_AUROC": 84.2108,
+        "best_model": "BBB_Martins",
+        "best_AUROC": 84.2108,
+        "worst_model": "BBB_Martins",
+        "worst_AUROC": 84.2108
+      },
+      "regression": {
+        "count": 2,
+        "mean_MAE": 5.44675,
+        "std_MAE": 3.51345,
+        "min_MAE": 1.9333,
+        "max_MAE": 8.9602,
+        "median_MAE": 5.44675,
+        "mean_R2": 0.02835,
+        "std_R2": 0.039349999999999996,
+        "min_R2": -0.011,
+        "max_R2": 0.0677,
+        "median_R2": 0.02835,
+        "best_model": "VDss_Lombardo",
+        "best_MAE": 1.9333,
+        "worst_model": "PPBR_AZ",
+        "worst_MAE": 8.9602
+      }
+    },
+    "Excretion": {
+      "regression": {
+        "count": 3,
+        "mean_MAE": 20.1846,
+        "std_MAE": 9.271739972986012,
+        "min_MAE": 7.9923,
+        "max_MAE": 30.4591,
+        "median_MAE": 22.1024,
+        "mean_R2": 0.008666666666666665,
+        "std_R2": 0.06496893274652295,
+        "min_R2": -0.0741,
+        "max_R2": 0.0846,
+        "median_R2": 0.0155,
+        "best_model": "Half_Life_Obach",
+        "best_MAE": 7.9923,
+        "worst_model": "Clearance_Hepatocyte_AZ",
+        "worst_MAE": 30.4591
+      }
+    },
+    "Metabolism": {
+      "classification": {
+        "count": 8,
+        "mean_AUROC": 81.4429125,
+        "std_AUROC": 8.790088294698394,
+        "min_AUROC": 64.0823,
+        "max_AUROC": 88.7632,
+        "median_AUROC": 84.85785,
+        "best_model": "CYP2C19_Veith",
+        "best_AUROC": 88.7632,
+        "worst_model": "CYP3A4_Substrate_CarbonMangels",
+        "worst_AUROC": 64.0823
+      }
+    },
+    "Toxicity": {
+      "classification": {
+        "count": 8,
+        "mean_AUROC": 78.5112875,
+        "std_AUROC": 5.651528693070022,
+        "min_AUROC": 71.0317,
+        "max_AUROC": 88.6522,
+        "median_AUROC": 78.6318,
+        "best_model": "DILI",
+        "best_AUROC": 88.6522,
+        "worst_model": "ClinTox",
+        "worst_AUROC": 71.0317
+      },
+      "regression": {
+        "count": 3,
+        "mean_MAE": 6.481066666666667,
+        "std_MAE": 4.795927872917004,
+        "min_MAE": 0.5663,
+        "max_MAE": 12.313,
+        "median_MAE": 6.5639,
+        "mean_R2": 0.30343333333333333,
+        "std_R2": 0.09641003866587522,
+        "min_R2": 0.1746,
+        "max_R2": 0.4065,
+        "median_R2": 0.3292,
+        "best_model": "LD50_Zhu",
+        "best_MAE": 0.5663,
+        "worst_model": "hERG_Central_10uM",
+        "worst_MAE": 12.313
+      }
+    }
+  }
+}

@@ -1,0 +1,1006 @@
+{
+  "version": "1.0",
+  "created": "2025-11-18",
+  "description": "Best hyperparameters extracted from retune experiments for final model training",
+  "total_datasets": 33,
+  "datasets": {
+    "AMES": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_final",
+      "best_test_metric": 78.733,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 3,
+        "alpha": 0.01,
+        "beta": 0.01,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 78.733,
+        "experiment_id": "enhanced_final",
+        "num_epochs_trained": 181,
+        "early_stopped": true
+      }
+    },
+    "BBB_Martins": {
+      "category": "Distribution",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_final",
+      "best_test_metric": 84.1503,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 5,
+        "alpha": 0.1,
+        "beta": 0.01,
+        "min_temp": 1.0,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 84.1503,
+        "experiment_id": "enhanced_final",
+        "num_epochs_trained": 64,
+        "early_stopped": true
+      }
+    },
+    "Bioavailability_Ma": {
+      "category": "Absorption",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "retune_exp007",
+      "best_test_metric": 68.9724,
+      "hyperparameters": {
+        "lr": 0.0001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 3,
+        "alpha": 0.1,
+        "beta": 0.01,
+        "min_temp": 1.0,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "random"
+      },
+      "performance": {
+        "best_test_metric": 68.9724,
+        "experiment_id": "retune_exp007",
+        "num_epochs_trained": 100,
+        "early_stopped": false,
+        "secondary_metrics": {
+          "test_auprc": 0.8803,
+          "test_accuracy": 0.7031,
+          "test_f1": 0.7912,
+          "test_sensitivity": 0.7423,
+          "test_specificity": 0.5806
+        }
+      }
+    },
+    "CYP1A2_Veith": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_feat_exp008",
+      "best_test_metric": 90.4038,
+      "hyperparameters": {
+        "lr": 0.0001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 5,
+        "alpha": 0.1,
+        "beta": 0.1,
+        "min_temp": 0.1,
+        "decay": 0.0001,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 90.4038,
+        "experiment_id": "enhanced_feat_exp008",
+        "num_epochs_trained": 80,
+        "early_stopped": true
+      }
+    },
+    "CYP2C19_Veith": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_feat_exp043",
+      "best_test_metric": 88.3473,
+      "hyperparameters": {
+        "lr": 0.0001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 5,
+        "alpha": 0.01,
+        "beta": 0.1,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 88.3473,
+        "experiment_id": "enhanced_feat_exp043",
+        "num_epochs_trained": 100,
+        "early_stopped": false
+      }
+    },
+    "CYP2C9_Substrate_CarbonMangels": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "retune_exp043",
+      "best_test_metric": 68.6923,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 3,
+        "alpha": 0.01,
+        "beta": 1.0,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "random"
+      },
+      "performance": {
+        "best_test_metric": 68.6923,
+        "experiment_id": "retune_exp043",
+        "num_epochs_trained": 85,
+        "early_stopped": true,
+        "secondary_metrics": {
+          "test_auprc": 0.4849,
+          "test_accuracy": 0.4444,
+          "test_f1": 0.4898,
+          "test_sensitivity": 0.9474,
+          "test_specificity": 0.2474
+        }
+      }
+    },
+    "CYP2C9_Veith": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_feat_exp019",
+      "best_test_metric": 88.1024,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 7,
+        "alpha": 0.1,
+        "beta": 0.01,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 88.1024,
+        "experiment_id": "enhanced_feat_exp019",
+        "num_epochs_trained": 77,
+        "early_stopped": true
+      }
+    },
+    "CYP2D6_Substrate_CarbonMangels": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_feat_exp023",
+      "best_test_metric": 85.6168,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 3,
+        "alpha": 0.01,
+        "beta": 1.0,
+        "min_temp": 1.0,
+        "decay": 0.0001,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 85.6168,
+        "experiment_id": "enhanced_feat_exp023",
+        "num_epochs_trained": 92,
+        "early_stopped": true
+      }
+    },
+    "CYP2D6_Veith": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_feat_exp032",
+      "best_test_metric": 85.9956,
+      "hyperparameters": {
+        "lr": 0.0001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 7,
+        "alpha": 0.01,
+        "beta": 0.1,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 85.9956,
+        "experiment_id": "enhanced_feat_exp032",
+        "num_epochs_trained": 100,
+        "early_stopped": false
+      }
+    },
+    "CYP3A4_Substrate_CarbonMangels": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "retune_exp073",
+      "best_test_metric": 60.7595,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 3,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "random"
+      },
+      "performance": {
+        "best_test_metric": 60.7595,
+        "experiment_id": "retune_exp073",
+        "num_epochs_trained": 69,
+        "early_stopped": true,
+        "secondary_metrics": {
+          "test_auprc": 0.6664,
+          "test_accuracy": 0.6222,
+          "test_f1": 0.7512,
+          "test_sensitivity": 0.9747,
+          "test_specificity": 0.125
+        }
+      }
+    },
+    "CYP3A4_Veith": {
+      "category": "Metabolism",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_feat_exp034",
+      "best_test_metric": 86.4885,
+      "hyperparameters": {
+        "lr": 0.0001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 5,
+        "alpha": 0.1,
+        "beta": 0.01,
+        "min_temp": 1.0,
+        "decay": 0.0001,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 86.4885,
+        "experiment_id": "enhanced_feat_exp034",
+        "num_epochs_trained": 100,
+        "early_stopped": false
+      }
+    },
+    "Caco2_Wang": {
+      "category": "Absorption",
+      "task_type": "regression",
+      "metric": "MAE",
+      "num_classes": 1,
+      "best_experiment_id": "enhanced_final",
+      "best_test_metric": 0.3665,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 5,
+        "alpha": 0.1,
+        "beta": 1.0,
+        "min_temp": 1.0,
+        "decay": 0.0001,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 0.3665,
+        "experiment_id": "enhanced_final",
+        "num_epochs_trained": 268,
+        "early_stopped": true
+      }
+    },
+    "Carcinogens_Lagunin": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "retune_exp006",
+      "best_test_metric": 78.3838,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 5,
+        "alpha": 0.1,
+        "beta": 0.1,
+        "min_temp": 1.0,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "random"
+      },
+      "performance": {
+        "best_test_metric": 78.3838,
+        "experiment_id": "retune_exp006",
+        "num_epochs_trained": 68,
+        "early_stopped": true,
+        "secondary_metrics": {
+          "test_auprc": 0.5282,
+          "test_accuracy": 0.3929,
+          "test_f1": 0.3929,
+          "test_sensitivity": 1.0,
+          "test_specificity": 0.2444
+        }
+      }
+    },
+    "Clearance_Hepatocyte_AZ": {
+      "category": "Excretion",
+      "task_type": "regression",
+      "metric": "MAE",
+      "num_classes": 1,
+      "best_experiment_id": "retune_exp028",
+      "best_test_metric": 30.1758,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 7,
+        "alpha": 1.0,
+        "beta": 0.01,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "random"
+      },
+      "performance": {
+        "best_test_metric": 30.1758,
+        "experiment_id": "retune_exp028",
+        "num_epochs_trained": 100,
+        "early_stopped": false,
+        "secondary_metrics": {
+          "test_rmse": 47.9842,
+          "test_r2": 0.0009,
+          "test_pearson": 0.3807,
+          "test_spearman": 0.4576
+        }
+      }
+    },
+    "Clearance_Microsome_AZ": {
+      "category": "Excretion",
+      "task_type": "regression",
+      "metric": "MAE",
+      "num_classes": 1,
+      "best_experiment_id": "retune_exp032",
+      "best_test_metric": 22.4858,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 3,
+        "alpha": 1.0,
+        "beta": 0.01,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "random"
+      },
+      "performance": {
+        "best_test_metric": 22.4858,
+        "experiment_id": "retune_exp032",
+        "num_epochs_trained": 100,
+        "early_stopped": false,
+        "secondary_metrics": {
+          "test_rmse": 43.2814,
+          "test_r2": -0.0094,
+          "test_pearson": 0.5206,
+          "test_spearman": 0.6028
+        }
+      }
+    },
+    "ClinTox": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "retune_exp016",
+      "best_test_metric": 69.9557,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 3,
+        "alpha": 0.01,
+        "beta": 0.01,
+        "min_temp": 1.0,
+        "decay": 0.0001,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "random"
+      },
+      "performance": {
+        "best_test_metric": 69.9557,
+        "experiment_id": "retune_exp016",
+        "num_epochs_trained": 59,
+        "early_stopped": true,
+        "secondary_metrics": {
+          "test_auprc": 0.1837,
+          "test_accuracy": 0.101,
+          "test_f1": 0.1524,
+          "test_sensitivity": 1.0,
+          "test_specificity": 0.022
+        }
+      }
+    },
+    "DILI": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_feat_exp002",
+      "best_test_metric": 89.5217,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 7,
+        "alpha": 0.1,
+        "beta": 0.01,
+        "min_temp": 0.1,
+        "decay": 0.0001,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 89.5217,
+        "experiment_id": "enhanced_feat_exp002",
+        "num_epochs_trained": 95,
+        "early_stopped": true
+      }
+    },
+    "HIA_Hou": {
+      "category": "Absorption",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_feat_exp049",
+      "best_test_metric": 97.2428,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 5,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "min_temp": 0.1,
+        "decay": 0.0001,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 97.2428,
+        "experiment_id": "enhanced_feat_exp049",
+        "num_epochs_trained": 100,
+        "early_stopped": false
+      }
+    },
+    "Half_Life_Obach": {
+      "category": "Excretion",
+      "task_type": "regression",
+      "metric": "MAE",
+      "num_classes": 1,
+      "best_experiment_id": "enhanced_final",
+      "best_test_metric": 7.9939,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 5,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "min_temp": 0.1,
+        "decay": 0.0001,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 7.9939,
+        "experiment_id": "enhanced_final",
+        "num_epochs_trained": 99,
+        "early_stopped": true
+      }
+    },
+    "HydrationFreeEnergy_FreeSolv": {
+      "category": "Absorption",
+      "task_type": "regression",
+      "metric": "MAE",
+      "num_classes": 1,
+      "best_experiment_id": "enhanced_final",
+      "best_test_metric": 1.0949,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 7,
+        "alpha": 0.01,
+        "beta": 1.0,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 1.0949,
+        "experiment_id": "enhanced_final",
+        "num_epochs_trained": 168,
+        "early_stopped": true
+      }
+    },
+    "LD50_Zhu": {
+      "category": "Toxicity",
+      "task_type": "regression",
+      "metric": "MAE",
+      "num_classes": 1,
+      "best_experiment_id": "enhanced_final",
+      "best_test_metric": 0.5712,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 5,
+        "alpha": 1.0,
+        "beta": 0.1,
+        "min_temp": 0.1,
+        "decay": 0.0001,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 0.5712,
+        "experiment_id": "enhanced_final",
+        "num_epochs_trained": 85,
+        "early_stopped": true
+      }
+    },
+    "Lipophilicity_AstraZeneca": {
+      "category": "Absorption",
+      "task_type": "regression",
+      "metric": "MAE",
+      "num_classes": 1,
+      "best_experiment_id": "enhanced_final",
+      "best_test_metric": 0.4903,
+      "hyperparameters": {
+        "lr": 0.0001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 3,
+        "alpha": 0.01,
+        "beta": 0.01,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 0.4903,
+        "experiment_id": "enhanced_final",
+        "num_epochs_trained": 300,
+        "early_stopped": false
+      }
+    },
+    "PAMPA_NCATS": {
+      "category": "Absorption",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "retune_exp020",
+      "best_test_metric": 74.0896,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 7,
+        "alpha": 1.0,
+        "beta": 0.1,
+        "min_temp": 1.0,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "random"
+      },
+      "performance": {
+        "best_test_metric": 74.0896,
+        "experiment_id": "retune_exp020",
+        "num_epochs_trained": 100,
+        "early_stopped": false,
+        "secondary_metrics": {
+          "test_auprc": 0.9339,
+          "test_accuracy": 0.8652,
+          "test_f1": 0.9277,
+          "test_sensitivity": 1.0,
+          "test_specificity": 0.0
+        }
+      }
+    },
+    "PPBR_AZ": {
+      "category": "Distribution",
+      "task_type": "regression",
+      "metric": "MAE",
+      "num_classes": 1,
+      "best_experiment_id": "enhanced_final",
+      "best_test_metric": 8.8946,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 5,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "min_temp": 0.1,
+        "decay": 0.0001,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 8.8946,
+        "experiment_id": "enhanced_final",
+        "num_epochs_trained": 248,
+        "early_stopped": true
+      }
+    },
+    "Pgp_Broccatelli": {
+      "category": "Absorption",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_feat_exp017",
+      "best_test_metric": 87.0901,
+      "hyperparameters": {
+        "lr": 0.0001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 7,
+        "alpha": 0.01,
+        "beta": 0.01,
+        "min_temp": 1.0,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 87.0901,
+        "experiment_id": "enhanced_feat_exp017",
+        "num_epochs_trained": 65,
+        "early_stopped": true
+      }
+    },
+    "Skin_Reaction": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "retune_exp067",
+      "best_test_metric": 71.6109,
+      "hyperparameters": {
+        "lr": 0.0001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 7,
+        "alpha": 1.0,
+        "beta": 0.01,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "random"
+      },
+      "performance": {
+        "best_test_metric": 71.6109,
+        "experiment_id": "retune_exp067",
+        "num_epochs_trained": 100,
+        "early_stopped": false,
+        "secondary_metrics": {
+          "test_auprc": 0.7873,
+          "test_accuracy": 0.6098,
+          "test_f1": 0.7193,
+          "test_sensitivity": 0.8723,
+          "test_specificity": 0.2571
+        }
+      }
+    },
+    "Solubility_AqSolDB": {
+      "category": "Absorption",
+      "task_type": "regression",
+      "metric": "MAE",
+      "num_classes": 1,
+      "best_experiment_id": "enhanced_final",
+      "best_test_metric": 0.9551,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 3,
+        "alpha": 0.01,
+        "beta": 0.01,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 0.9551,
+        "experiment_id": "enhanced_final",
+        "num_epochs_trained": 102,
+        "early_stopped": true
+      }
+    },
+    "VDss_Lombardo": {
+      "category": "Distribution",
+      "task_type": "regression",
+      "metric": "MAE",
+      "num_classes": 1,
+      "best_experiment_id": "enhanced_final",
+      "best_test_metric": 1.9333,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 7,
+        "alpha": 0.1,
+        "beta": 0.01,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 1.9333,
+        "experiment_id": "enhanced_final",
+        "num_epochs_trained": 68,
+        "early_stopped": true
+      }
+    },
+    "hERG": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "retune_exp049",
+      "best_test_metric": 76.2003,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 7,
+        "alpha": 1.0,
+        "beta": 0.01,
+        "min_temp": 1.0,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "random"
+      },
+      "performance": {
+        "best_test_metric": 76.2003,
+        "experiment_id": "retune_exp049",
+        "num_epochs_trained": 76,
+        "early_stopped": true,
+        "secondary_metrics": {
+          "test_auprc": 0.8563,
+          "test_accuracy": 0.7879,
+          "test_f1": 0.8739,
+          "test_sensitivity": 1.0,
+          "test_specificity": 0.2
+        }
+      }
+    },
+    "hERG_Central_10uM": {
+      "category": "Toxicity",
+      "task_type": "regression",
+      "metric": "MAE",
+      "num_classes": 1,
+      "best_experiment_id": "retune_exp005",
+      "best_test_metric": 12.4443,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.3,
+        "batch_size": 512,
+        "num_experts": 5,
+        "alpha": 1.0,
+        "beta": 1.0,
+        "min_temp": 1.0,
+        "decay": 0.0001,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "random"
+      },
+      "performance": {
+        "best_test_metric": 12.4443,
+        "experiment_id": "retune_exp005",
+        "num_epochs_trained": 100,
+        "early_stopped": false,
+        "secondary_metrics": {
+          "test_rmse": 17.0816,
+          "test_r2": 0.3158,
+          "test_pearson": 0.5715,
+          "test_spearman": 0.4715
+        }
+      }
+    },
+    "hERG_Central_1uM": {
+      "category": "Toxicity",
+      "task_type": "regression",
+      "metric": "MAE",
+      "num_classes": 1,
+      "best_experiment_id": "enhanced_final",
+      "best_test_metric": 6.5598,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 7,
+        "alpha": 0.1,
+        "beta": 0.1,
+        "min_temp": 1.0,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 6.5598,
+        "experiment_id": "enhanced_final",
+        "num_epochs_trained": 56,
+        "early_stopped": true
+      }
+    },
+    "hERG_Central_inhib": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_final",
+      "best_test_metric": 83.9804,
+      "hyperparameters": {
+        "lr": 0.001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 7,
+        "alpha": 0.1,
+        "beta": 0.1,
+        "min_temp": 1.0,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 83.9804,
+        "experiment_id": "enhanced_final",
+        "num_epochs_trained": 52,
+        "early_stopped": true
+      }
+    },
+    "hERG_Karim": {
+      "category": "Toxicity",
+      "task_type": "classification",
+      "metric": "AUROC",
+      "num_classes": 2,
+      "best_experiment_id": "enhanced_feat_exp016",
+      "best_test_metric": 80.9282,
+      "hyperparameters": {
+        "lr": 0.0001,
+        "dropout_ratio": 0.0,
+        "batch_size": 512,
+        "num_experts": 5,
+        "alpha": 0.01,
+        "beta": 0.01,
+        "min_temp": 0.1,
+        "decay": 0.0,
+        "num_layer": 5,
+        "emb_dim": 300,
+        "gate_dim": 50,
+        "split_type": "scaffold"
+      },
+      "performance": {
+        "best_test_metric": 80.9282,
+        "experiment_id": "enhanced_feat_exp016",
+        "num_epochs_trained": 100,
+        "early_stopped": false
+      }
+    }
+  }
+}

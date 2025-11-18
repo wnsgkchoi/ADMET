@@ -1,0 +1,121 @@
+{
+  "total_datasets": 33,
+  "completed": 33,
+  "missing": 0,
+  "not_run": 0,
+  "errors": 0,
+  "improvement": {
+    "mean": -0.2349727272727279,
+    "std": 1.3687703841067398,
+    "median": -9.999999999998899e-05,
+    "min": -4.356499999999997,
+    "max": 3.322800000000001,
+    "mean_pct": -0.28832578352721977,
+    "positive_count": 15,
+    "negative_count": 17,
+    "neutral_count": 2
+  },
+  "by_category": {
+    "Toxicity": {
+      "count": 11,
+      "mean_improvement": -0.09923636363636312,
+      "positive_count": 6
+    },
+    "Distribution": {
+      "count": 3,
+      "mean_improvement": -0.0016999999999984066,
+      "positive_count": 1
+    },
+    "Absorption": {
+      "count": 8,
+      "mean_improvement": -0.4870250000000027,
+      "positive_count": 2
+    },
+    "Metabolism": {
+      "count": 8,
+      "mean_improvement": -0.3578625000000013,
+      "positive_count": 4
+    },
+    "Excretion": {
+      "count": 3,
+      "mean_improvement": 0.03390000000000034,
+      "positive_count": 2
+    }
+  },
+  "by_task_type": {
+    "classification": {
+      "count": 21,
+      "mean_improvement": -0.3763142857142867,
+      "positive_count": 11
+    },
+    "regression": {
+      "count": 12,
+      "mean_improvement": 0.01237500000000003,
+      "positive_count": 4
+    }
+  },
+  "top_improvements": [
+    {
+      "dataset": "CYP3A4_Substrate_CarbonMangels",
+      "improvement": 3.322800000000001,
+      "improvement_pct": 5.468774430335998,
+      "metric": "AUROC"
+    },
+    {
+      "dataset": "Clearance_Microsome_AZ",
+      "improvement": 0.38340000000000174,
+      "improvement_pct": 1.705076092467254,
+      "metric": "MAE"
+    },
+    {
+      "dataset": "CYP2C9_Substrate_CarbonMangels",
+      "improvement": 1.1123999999999938,
+      "improvement_pct": 1.619395478095789,
+      "metric": "AUROC"
+    },
+    {
+      "dataset": "ClinTox",
+      "improvement": 1.0760000000000076,
+      "improvement_pct": 1.538116265007723,
+      "metric": "AUROC"
+    },
+    {
+      "dataset": "Pgp_Broccatelli",
+      "improvement": 1.2996999999999872,
+      "improvement_pct": 1.4923625073343434,
+      "metric": "AUROC"
+    }
+  ],
+  "worst_regressions": [
+    {
+      "dataset": "hERG",
+      "improvement": -1.7231000000000023,
+      "improvement_pct": -2.2612771865727592,
+      "metric": "AUROC"
+    },
+    {
+      "dataset": "Caco2_Wang",
+      "improvement": -0.008500000000000008,
+      "improvement_pct": -2.3192360163710797,
+      "metric": "MAE"
+    },
+    {
+      "dataset": "CYP3A4_Veith",
+      "improvement": -2.763300000000001,
+      "improvement_pct": -3.1949912416101576,
+      "metric": "AUROC"
+    },
+    {
+      "dataset": "CYP2D6_Substrate_CarbonMangels",
+      "improvement": -3.5641999999999996,
+      "improvement_pct": -4.162968015623101,
+      "metric": "AUROC"
+    },
+    {
+      "dataset": "Bioavailability_Ma",
+      "improvement": -4.356499999999997,
+      "improvement_pct": -6.316294633795544,
+      "metric": "AUROC"
+    }
+  ]
+}

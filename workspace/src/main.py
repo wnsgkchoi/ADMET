@@ -660,7 +660,12 @@ def main(args):
     
         # Prepare checkpoint directory
         if args.category and args.dataset_name:
-            checkpoint_dir = f"{args.output_dir}/{args.category}/{args.dataset_name}"
+            if args.experiment_id and args.experiment_id != '0':
+                # For hyperparameter tuning, use experiment_id subdirectory
+                checkpoint_dir = f"{args.output_dir}/hyperparam/{args.category}/{args.dataset_name}/{args.experiment_id}"
+            else:
+                # For final training, use category/dataset structure
+                checkpoint_dir = f"{args.output_dir}/{args.category}/{args.dataset_name}"
         else:
             checkpoint_dir = f"{args.output_dir}/{args.dataset}"
         os.makedirs(checkpoint_dir, exist_ok=True)
