@@ -1,2 +1,0 @@
-experiment_id,lr,dropout_ratio,batch_size,num_experts,alpha,beta,min_temp,decay,num_layer,emb_dim,gate_dim,split_type,val_metric,val_metric_std,test_metric,test_metric_std,num_epochs_trained,early_stopped,timestamp,test_auprc,test_accuracy,test_f1,test_sensitivity,test_specificity
-final_model,0.001,0.3,512,3,0.01,1.0,0.1,0.0,5,300,50,random,,,69.8047,,164,True,2025-11-18 06:42:18,0.4969,0.2815,0.4393,1.0000,0.0000

@@ -88,12 +88,11 @@ class GNN(torch.nn.Module):
 
     """
 
-    def __init__(self, num_layer, emb_dim, JK="last", drop_ratio=0, gnn_type="gin", extra_feature_dim=0):
+    def __init__(self, num_layer, emb_dim, JK="last", drop_ratio=0, gnn_type="gin"):
         super(GNN, self).__init__()
         self.num_layer = num_layer
         self.drop_ratio = drop_ratio
         self.JK = JK
-        self.extra_feature_dim = extra_feature_dim
 
         if self.num_layer < 2:
             raise ValueError("Number of GNN layers must be greater than 1.")
@@ -105,13 +104,6 @@ class GNN(torch.nn.Module):
         self.x_embedding5 = torch.nn.Embedding(9, emb_dim)   # num_h (0-8)
         self.x_embedding6 = torch.nn.Embedding(7, emb_dim)   # hybridization (7 types)
         self.x_embedding7 = torch.nn.Embedding(2, emb_dim)   # is_aromatic (0 or 1)
-        
-        # Linear projection for extra continuous features
-        if self.extra_feature_dim > 0:
-            self.feat_bn = torch.nn.BatchNorm1d(self.extra_feature_dim)
-            self.feat_proj = torch.nn.Linear(self.extra_feature_dim, emb_dim)
-            torch.nn.init.xavier_uniform_(self.feat_proj.weight.data)
-            self.feat_proj.bias.data.zero_()
 
         torch.nn.init.xavier_uniform_(self.x_embedding1.weight.data)
         torch.nn.init.xavier_uniform_(self.x_embedding2.weight.data)
@@ -152,22 +144,12 @@ class GNN(torch.nn.Module):
             x, edge_index, edge_attr = data.x, data.edge_index, data.edge_attr
         else:
             raise ValueError("unmatched number of arguments.")
-            
-        # Split input x into categorical (first 7) and continuous (rest)
-        # x is FloatTensor now, so we need to cast the first 7 columns to Long for embedding lookup
-        x_cat = x[:, :7].long()
-        
-        x_emb = self.x_embedding1(x_cat[:, 0]) + self.x_embedding2(x_cat[:, 1]) + self.x_embedding3(x_cat[:, 2]) + \
-            self.x_embedding4(x_cat[:, 3]) + self.x_embedding5(x_cat[:, 4]) + self.x_embedding6(x_cat[:, 5]) + \
-            self.x_embedding7(x_cat[:, 6])
-            
-        # Add projected extra features if they exist
-        if self.extra_feature_dim > 0:
-            x_cont = x[:, 7:]
-            x_cont = self.feat_bn(x_cont)
-            x_emb = x_emb + self.feat_proj(x_cont)
 
-        h_list = [x_emb]
+        x = self.x_embedding1(x[:, 0]) + self.x_embedding2(x[:, 1]) + self.x_embedding3(x[:, 2]) + \
+            self.x_embedding4(x[:, 3]) + self.x_embedding5(x[:, 4]) + self.x_embedding6(x[:, 5]) + \
+            self.x_embedding7(x[:, 6])
+
+        h_list = [x]
         for layer in range(self.num_layer):
             h = self.gnns[layer](h_list[layer], edge_index, edge_attr)
             h = self.batch_norms[layer](h)
@@ -323,7 +305,6 @@ class GNN_topexpert(torch.nn.Module): # expert 를 parallel 하게
         self.num_classes = args.num_classes
         self.graph_pooling = args.graph_pooling
         self.gnn_type = args.gnn_type
-        self.extra_feature_dim = getattr(args, 'extra_feature_dim', 0)
 
         self.gate = gate(args.emb_dim, args.gate_dim)
         self.cluster = nn.Parameter(torch.Tensor(args.num_experts, args.gate_dim))
@@ -358,7 +339,7 @@ class GNN_topexpert(torch.nn.Module): # expert 를 parallel 하게
         if self.num_layer < 2:
             raise ValueError("Number of GNN layers must be greater than 1.")
 
-        self.gnn = GNN(self.num_layer, self.emb_dim, self.JK, self.drop_ratio, gnn_type=self.gnn_type, extra_feature_dim=self.extra_feature_dim)
+        self.gnn = GNN(self.num_layer, self.emb_dim, self.JK, self.drop_ratio, gnn_type=self.gnn_type)
         
         # Different kind of graph pooling
         if self.graph_pooling == "sum":
@@ -463,23 +444,14 @@ class GNN_topexpert(torch.nn.Module): # expert 를 parallel 하게
         else:
             # Binary classification or regression
             # clf_outs shape: N x tasks x num_experts
-            
-            if task_type == 'classification':
-                # Binary: labels are 0/1. 
-                # Previous logic (labels**2 > 0) assumed -1/1 labels where 0 was missing.
-                # Now we assume 0/1 are valid. We assume -1 (or < 0) is missing if any.
-                is_valid = labels >= 0
-            else:
-                # Regression
-                is_valid = torch.ones_like(labels, dtype=torch.bool)
-
+            is_valid = labels ** 2 > 0
             is_valid_tensor = is_valid.unsqueeze(-1).repeat(1, 1, self.num_experts)
             
             labels_expanded = labels.unsqueeze(-1).repeat(1, 1, self.num_experts)  # N x tasks x experts
             
             if task_type == 'classification':
-                # Binary: labels are 0/1, so use them directly
-                loss_tensor = self.criterion(clf_outs, labels_expanded)
+                # Binary: convert labels from -1/1 to 0/1 range for BCEWithLogitsLoss
+                loss_tensor = self.criterion(clf_outs, (labels_expanded + 1) / 2)
             else:
                 # Regression: use labels as-is (NO CONVERSION)
                 loss_tensor = self.criterion(clf_outs, labels_expanded)

@@ -1,0 +1,4 @@
+experiment_id,lr,dropout_ratio,batch_size,num_experts,alpha,beta,min_temp,decay,num_layer,emb_dim,gate_dim,split_type,val_metric,val_metric_std,test_metric,test_metric_std,num_epochs_trained,early_stopped,timestamp,test_auprc,test_accuracy,test_f1,test_sensitivity,test_specificity,val_auprc,val_accuracy,val_f1,val_sensitivity,val_specificity
+exp_0862,0.0001,0.1,512,7,0.01,1.0,0.1,1e-05,5,300,50,scaffold,86.5728,,85.5332,,312,True,2025-11-19 23:20:30,0.5691,0.1801,0.2915,1.0,0.0137,0.5972,0.2186,0.3205,1.0,0.042
+exp_0840,0.0001,0.0,32,3,0.01,1.0,0.1,0.0,5,300,50,scaffold,86.3175,,60.0601,,108,True,2025-11-19 22:16:05,0.2071,0.1687,0.2887,1.0,0.0,0.2449,0.1843,0.3113,1.0,0.0
+exp_0802,0.0001,0.3,512,7,0.01,1.0,0.1,1e-05,5,300,50,scaffold,86.1163,,85.436,,292,True,2025-11-19 19:57:48,0.556,0.1691,0.2888,1.0,0.0005,0.5894,0.1874,0.3121,1.0,0.0037

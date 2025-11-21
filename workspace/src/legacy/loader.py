@@ -21,36 +21,6 @@ from rdkit.Chem.rdMolDescriptors import CalcNumRings
 import csv 
 from splitters import generate_scaffold
 
-# ===================================================================
-# Descriptor Definitions
-# ===================================================================
-PHYSICOCHEMICAL_DESCRIPTORS = [
-    'MolWt', 'MolLogP', 'TPSA', 'NumHDonors', 'NumHAcceptors', 'NOCount', 'NumRotatableBonds',
-    'RingCount', 'NumAromaticRings', 'NumSaturatedRings', 'NumAliphaticRings', 'FractionCSP3',
-    'HeavyAtomCount', 'NumValenceElectrons', 'NumHeteroatoms', 'NHOHCount',
-    'BalabanJ', 'BertzCT', 'HallKierAlpha',
-    'Chi0', 'Chi1', 'Chi0n', 'Chi1n',
-    'MaxEStateIndex', 'MinEStateIndex',
-    'PEOE_VSA1', 'SlogP_VSA1',
-    'MolMR', 'QED', 'LabuteASA',
-    'NumAliphaticCarbocycles', 'NumAromaticCarbocycles', 'NumAliphaticHeterocycles', 'NumAromaticHeterocycles',
-    'Kappa1', 'Kappa2', 'Kappa3'
-]
-
-def get_admet_features(mol):
-    """Calculate 37-dim Physicochemical features only"""
-    features = []
-    
-    # 1. Physicochemical (37)
-    for desc_name in PHYSICOCHEMICAL_DESCRIPTORS:
-        try:
-            val = getattr(Descriptors, desc_name)(mol)
-            features.append(val)
-        except:
-            features.append(0.0)
-            
-    return np.array(features, dtype=np.float32)
-
 # allowable node and edge features
 allowable_features = {
     'possible_atomic_num_list' : list(range(1, 119)),
@@ -137,36 +107,11 @@ def mol_to_graph_data_obj_simple(mol, smile=None):
         edge_index = torch.empty((2, 0), dtype=torch.long)
         edge_attr = torch.empty((0, num_bond_features), dtype=torch.long)
 
-    # Calculate extra features (37 dim)
-    x_features = get_admet_features(mol)
-    
-    # Broadcast global features to all atoms
-    # x shape: [num_atoms, 7]
-    # x_features shape: [37]
-    # Result shape: [num_atoms, 7 + 37]
-    num_atoms = x.size(0)
-    x_features_repeated = torch.tensor(x_features, dtype=torch.float).repeat(num_atoms, 1)
-    
-    # Concatenate atom features and global features
-    # Note: x is LongTensor (indices), x_features is FloatTensor
-    # We will keep them separate in the Data object or concatenate them?
-    # Since they are different types, we can't concatenate into a single tensor easily without casting.
-    # However, PyG Data object usually expects x to be a single tensor.
-    # But here we have mixed types (indices vs continuous).
-    # Strategy: Concatenate them as float, but we need to be careful when using them.
-    # Actually, it's better to keep x as is (indices) and append the features as a separate tensor,
-    # OR concatenate them and handle the splitting in the model.
-    # Given the user's request "add to atom_feature", let's concatenate.
-    # But x was LongTensor. If we make it FloatTensor, we can't use it for Embedding lookup directly without casting back.
-    # Let's concatenate them into a FloatTensor. The model will have to cast the first 7 columns to Long.
-    
-    x_combined = torch.cat([x.float(), x_features_repeated], dim=1)
-
     ### modify to add smile to data
     if smile == None:
-        data = Data(x=x_combined, edge_index=edge_index, edge_attr=edge_attr)
+        data = Data(x=x, edge_index=edge_index, edge_attr=edge_attr)
     else:
-        data = Data(x=x_combined, edge_index=edge_index, edge_attr=edge_attr, smile=smile)
+        data = Data(x=x, edge_index=edge_index, edge_attr=edge_attr, smile=smile)
 
     return data
 

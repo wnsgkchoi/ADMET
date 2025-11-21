@@ -59,6 +59,7 @@ logs/
 *.pkl
 *.pickle
 *.pt
+references/ADMET_Ver4.ipynb
 
 # Temporary files
 tmp/

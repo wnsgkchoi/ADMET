@@ -151,7 +151,8 @@ Y Distribution:
 
 참고로 총 25개의 hyperparam exp가 돌아간 지금 확인할 때, valid나 test나 둘 다 처참한 AUROC을 보이고 있다. test_accuracy가 0.6 정도에서 형성되고 있는데, 이는 사실 그냥 찍는 것과 크게 다르지 않은 성능이다. (실제로 test set에 대해 1을 찍으면 58.52의 accuracy) 참고로 valid_accuracy는 더 낮다. 0.5 후반에서 형성되고 있다.  
 
-Early Stop이 False인 실험이 많은 것으로 보아, training step을 늘려 어느 정도 해결할 수 있을 것으로 보인다.  
+**Early Stop이 False인 실험이 많은 것으로 보아, training step을 늘려 어느 정도 해결할 수 있을 것으로 보인다.**  
+-> 그렇게 해도 해결 못 할 가능성도 높다.  
 
 
 #### 4. Skin_Reaction  
@@ -230,6 +231,7 @@ Regression의 경우 다음 데이터셋에서 좋지 않은 성능이 관찰된
 |Lipophilicity_AstraZeneca||||||0.4903|
 |Caco2_Wang||||||0.3665|
 
+-> 20251118_report.md에 정리  
 
 ##### 해결 방안  
 
@@ -242,12 +244,13 @@ Regression의 경우 다음 데이터셋에서 좋지 않은 성능이 관찰된
     - 튜닝 완료된 후 해당 파라미터로 모델 학습 및 test set에 대한 metric 확인  
     - 모델을 종합하여 input으로 SMILES 문자열이 들어올 때, 33가지 항목에 대해 예측하는 통합 프로그램 작성  
     - 이전에 받은 prediction dataset의 SMILES에 대해 해당 프로그램 실행 후 결과 분석 (임상 1상 예측 부분)  
-- CYP3A4_Substrate_CarbonMangels 관련 이슈 확인 (상술한 이슈)  
+- CYP3A4_Substrate_CarbonMangels 관련 이슈 확인 (상술한 이슈)   
 
 
 #### 현재 상황 (11.18.)  
 
-성능이 안 나온다. random split으로 바꿨는데도 안 되는 데이터셋은 안 된다.  
+성능이 안 나온다. random split으로 바꿨는데도 안 되는 데이터셋은 안 된다. 오늘까지 보고서 초안 작성인데, 망한 듯..?  
+CYP3A4_Substrate_CarbonMangels의 경우 early stopping이 false인 실험도 분명 있었지만, true인 실험도 많았다. 굳이 따지자면 True가 더 많다.  
 
 
 

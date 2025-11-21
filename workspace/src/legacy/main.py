@@ -50,8 +50,6 @@ def load_args():
     parser.add_argument('-i', '--input_model_file', type=str, default='', help='filename to read the model (if there is any)')
     parser.add_argument('-c', '--ckpt_all', action='store_true',
                         help='Save all epoch checkpoints (default: save only best model)')
-    parser.add_argument('--no_save_model', action='store_true',
-                        help='Do not save model checkpoints (useful for hyperparameter tuning)')
     parser.add_argument('--output_dir', type=str, default='workspace/output',
                         help='Directory to save model checkpoints')
     
@@ -67,7 +65,6 @@ def load_args():
     parser.add_argument('--JK', type=str, default="last",
                         help='how the node features across layers are combined. last, sum, max, concat')
     parser.add_argument('--gnn_type', type=str, default="gin")
-    parser.add_argument('--extra_feature_dim', type=int, default=37, help='Dimension of extra features')
 
 
 # train
@@ -103,7 +100,7 @@ def load_args():
     args.device = torch.device("cuda:" + str(args.device_no)) if torch.cuda.is_available() else torch.device("cpu")
 
     # Handle ADMET datasets
-    if args.dataset_name:
+    if args.category and args.dataset_name:
         # New ADMET dataset structure
         import json
         from loader import load_admet_dataset
@@ -112,11 +109,6 @@ def load_args():
             config = json.load(f)
         
         dataset_info = config['datasets'][args.dataset_name]
-        
-        # Auto-fill category if missing
-        if not args.category:
-            args.category = dataset_info['category']
-            
         args.task_type = dataset_info['task_type']
         args.num_tasks = 1
         args.num_classes = dataset_info['num_classes']
@@ -392,7 +384,7 @@ def eval(args, model, loader):
 
 
 def save_results_to_csv(args, val_metric, test_metric, val_std=None, test_std=None, num_epochs=None, early_stopped=False, 
-                       val_secondary=None, test_secondary=None, train_metric=None, train_secondary=None):
+                       val_secondary=None, test_secondary=None):
     """Save experiment results to CSV file with secondary metrics"""
     import pandas as pd
     
@@ -422,7 +414,6 @@ def save_results_to_csv(args, val_metric, test_metric, val_std=None, test_std=No
         'emb_dim': args.emb_dim,
         'gate_dim': args.gate_dim,
         'split_type': args.split,
-        'train_metric': f'{train_metric:.4f}' if train_metric is not None else '',
         'val_metric': f'{val_metric:.4f}' if val_metric is not None else '',
         'val_metric_std': f'{val_std:.4f}' if val_std is not None else '',
         'test_metric': f'{test_metric:.4f}',
@@ -433,17 +424,13 @@ def save_results_to_csv(args, val_metric, test_metric, val_std=None, test_std=No
     }
     
     # Add secondary metrics if available
-    if train_secondary:
-        for key, value in train_secondary.items():
-            result[f'train_{key}'] = f'{value:.4f}' if value is not None else ''
-
-    if val_secondary:
-        for key, value in val_secondary.items():
-            result[f'val_{key}'] = f'{value:.4f}' if value is not None else ''
-
     if test_secondary:
         for key, value in test_secondary.items():
             result[f'test_{key}'] = f'{value:.4f}' if value is not None else ''
+    
+    if val_secondary:
+        for key, value in val_secondary.items():
+            result[f'val_{key}'] = f'{value:.4f}' if value is not None else ''
     
     df = pd.DataFrame([result])
     
@@ -645,42 +632,7 @@ def main(args):
         ## criterion - select based on task type
         if args.task_type == 'classification':
             # Binary or multi-class classification
-            # Calculate class weights for imbalanced datasets
-            # Extract labels from train_dataset to compute pos_weight
-            try:
-                # Handle both Subset and direct Dataset objects
-                if hasattr(train_dataset, 'dataset'):
-                    # It's a Subset
-                    indices = train_dataset.indices
-                    all_labels = [train_dataset.dataset[i].y for i in indices]
-                else:
-                    # It's a Dataset
-                    all_labels = [data.y for data in train_dataset]
-                
-                # Stack labels (assuming shape [num_tasks] or [1, num_tasks])
-                y_train = torch.stack(all_labels)
-                if y_train.dim() > 1:
-                    y_train = y_train.squeeze()
-                
-                y_train_np = y_train.cpu().numpy()
-                
-                # Calculate weight for each task (if multi-task) or single task
-                # Assuming binary classification (0/1)
-                num_pos = np.sum(y_train_np == 1, axis=0)
-                num_neg = np.sum(y_train_np == 0, axis=0)
-                
-                # Avoid division by zero
-                pos_weight = torch.tensor(np.where(num_pos > 0, num_neg / num_pos, 1.0), dtype=torch.float).to(args.device)
-                
-                print(f"Class balance: Pos={num_pos}, Neg={num_neg}")
-                print(f"Applied pos_weight: {pos_weight}")
-                
-                criterion = nn.BCEWithLogitsLoss(reduction="none", pos_weight=pos_weight)
-                
-            except Exception as e:
-                print(f"Warning: Could not calculate class weights: {e}")
-                print("Falling back to standard BCEWithLogitsLoss")
-                criterion = nn.BCEWithLogitsLoss(reduction="none")
+            criterion = nn.BCEWithLogitsLoss(reduction="none")
         else:
             # Regression: use L1Loss (MAE)
             criterion = nn.L1Loss(reduction="none")
@@ -716,20 +668,11 @@ def main(args):
                 checkpoint_dir = f"{args.output_dir}/{args.category}/{args.dataset_name}"
         else:
             checkpoint_dir = f"{args.output_dir}/{args.dataset}"
-            
-        if not args.no_save_model:
-            os.makedirs(checkpoint_dir, exist_ok=True)
-            
+        os.makedirs(checkpoint_dir, exist_ok=True)
         best_checkpoint_path = os.path.join(checkpoint_dir, "best_model.pt")
         
         best_val_acc = 0
         best_test_acc = 0
-        
-        # Variables to store metrics at the best epoch (to avoid loading model if no_save_model is True)
-        best_test_acc_at_best_val = 0
-        best_test_secondary_at_best_val = None
-        best_test_secondary = None # For combined mode
-        
         patience_counter = 0
         current_epoch = 0
         
@@ -754,20 +697,18 @@ def main(args):
                 
                 if is_better:
                     best_test_acc = test_acc
-                    best_test_secondary = test_secondary
                     patience_counter = 0
                     
                     # Save best checkpoint with secondary metrics
-                    if not args.no_save_model:
-                        torch.save({
-                            'epoch': epoch,
-                            'model_state_dict': model.state_dict(),
-                            'optimizer_state_dict': optimizer.state_dict(),
-                            'test_metric': test_acc,
-                            'test_secondary_metrics': test_secondary,
-                            'args': vars(args)
-                        }, best_checkpoint_path)
-                        qprint(f"Saved best model at epoch {epoch}", args)
+                    torch.save({
+                        'epoch': epoch,
+                        'model_state_dict': model.state_dict(),
+                        'optimizer_state_dict': optimizer.state_dict(),
+                        'test_metric': test_acc,
+                        'test_secondary_metrics': test_secondary,
+                        'args': vars(args)
+                    }, best_checkpoint_path)
+                    qprint(f"Saved best model at epoch {epoch}", args)
                 else:
                     patience_counter += 1
                 
@@ -779,9 +720,6 @@ def main(args):
                 # Normal mode with validation set
                 val_acc, val_secondary = eval(args, model, val_loader)
                 
-                # Evaluate on test set for monitoring AND for capturing best model performance
-                te_acc, te_secondary = eval(args, model, test_loader)
-                
                 # Track best validation performance
                 if args.task_type == 'classification':
                     is_better = val_acc > best_val_acc
@@ -790,22 +728,22 @@ def main(args):
                 
                 if is_better:
                     best_val_acc = val_acc
-                    best_test_acc_at_best_val = te_acc
-                    best_test_secondary_at_best_val = te_secondary
                     patience_counter = 0
                     
                     # Save best checkpoint
-                    if not args.no_save_model:
-                        torch.save({
-                            'epoch': epoch,
-                            'model_state_dict': model.state_dict(),
-                            'optimizer_state_dict': optimizer.state_dict(),
-                            'val_metric': val_acc,
-                            'args': vars(args)
-                        }, best_checkpoint_path)
-                        qprint(f"Saved best model at epoch {epoch}", args)
+                    torch.save({
+                        'epoch': epoch,
+                        'model_state_dict': model.state_dict(),
+                        'optimizer_state_dict': optimizer.state_dict(),
+                        'val_metric': val_acc,
+                        'args': vars(args)
+                    }, best_checkpoint_path)
+                    qprint(f"Saved best model at epoch {epoch}", args)
                 else:
                     patience_counter += 1
+                
+                # Evaluate on test set for monitoring
+                te_acc, _ = eval(args, model, test_loader)
                 
                 # Display metrics
                 metric_name = 'AUROC' if args.task_type == 'classification' else 'MAE'
@@ -816,32 +754,13 @@ def main(args):
                 qprint(f"Early stopping at epoch {epoch}", args)
                 break
         
-        # Final evaluation logic
-        if not args.no_save_model:
-            # Load best model from disk for final evaluation
-            qprint(f"Loading best model from {best_checkpoint_path}", args)
-            checkpoint = torch.load(best_checkpoint_path, weights_only=False)
-            model.load_state_dict(checkpoint['model_state_dict'])
-            
-            # Final test evaluation
-            final_test_acc, final_test_secondary = eval(args, model, test_loader)
-            # Final train evaluation
-            final_train_acc, final_train_secondary = eval(args, model, train_loader)
-        else:
-            # Use stored metrics from memory
-            qprint("Using best model metrics from memory (no_save_model=True)", args)
-            if use_test_for_tracking:
-                final_test_acc = best_test_acc
-                final_test_secondary = best_test_secondary
-                # For combined mode, we don't have a separate validation set, so we can evaluate on train set now
-                final_train_acc, final_train_secondary = eval(args, model, train_loader)
-            else:
-                final_test_acc = best_test_acc_at_best_val
-                final_test_secondary = best_test_secondary_at_best_val
-                # Evaluate on train set using the current model state (which might not be the absolute best if no_save_model is True)
-                # Ideally we should have tracked best_train_acc too, but evaluating now is a reasonable approximation or we can skip it.
-                # Let's evaluate on train_loader to get the metrics.
-                final_train_acc, final_train_secondary = eval(args, model, train_loader)
+        # Load best model for final evaluation
+        qprint(f"Loading best model from {best_checkpoint_path}", args)
+        checkpoint = torch.load(best_checkpoint_path, weights_only=False)
+        model.load_state_dict(checkpoint['model_state_dict'])
+        
+        # Final test evaluation
+        final_test_acc, final_test_secondary = eval(args, model, test_loader)
         
         # Save results to CSV
         if use_test_for_tracking:
@@ -855,9 +774,7 @@ def main(args):
                 num_epochs=current_epoch,
                 early_stopped=(patience_counter >= args.patience),
                 val_secondary=None,
-                test_secondary=final_test_secondary,
-                train_metric=final_train_acc,
-                train_secondary=final_train_secondary
+                test_secondary=final_test_secondary
             )
         else:
             # Normal mode with validation
@@ -870,9 +787,7 @@ def main(args):
                 num_epochs=current_epoch,
                 early_stopped=(patience_counter >= args.patience),
                 val_secondary=val_secondary if 'val_secondary' in locals() else None,
-                test_secondary=final_test_secondary,
-                train_metric=final_train_acc,
-                train_secondary=final_train_secondary
+                test_secondary=final_test_secondary
             )
 
 if __name__ == "__main__":

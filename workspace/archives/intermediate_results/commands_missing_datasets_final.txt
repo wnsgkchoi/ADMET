@@ -1,9 +1,0 @@
-# Missing Large Datasets Final Training Commands
-# Datasets: 3 (hERG_Central series)
-# Features: 7 atom + 4 edge
-# Pre-trained GIN: enabled
-# Estimated time: 3 × 60min = 3 hours (large datasets)
-
-conda run -n ADMET python workspace/src/main.py --category Toxicity --dataset_name hERG_Central_inhib --experiment_id enhanced_final --lr 0.001 --dropout_ratio 0.0 --batch_size 512 --num_experts 7 --alpha 0.1 --beta 0.1 --min_temp 1.0 --decay 0.0 --num_layer 5 --emb_dim 300 --gate_dim 50 --split scaffold --epochs 300 --patience 50 --use_combined_trainvalid --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth
-conda run -n ADMET python workspace/src/main.py --category Toxicity --dataset_name hERG_Central_10uM --experiment_id enhanced_final --lr 0.001 --dropout_ratio 0.0 --batch_size 512 --num_experts 7 --alpha 0.1 --beta 0.1 --min_temp 1.0 --decay 0.0 --num_layer 5 --emb_dim 300 --gate_dim 50 --split scaffold --epochs 300 --patience 50 --use_combined_trainvalid --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth
-conda run -n ADMET python workspace/src/main.py --category Toxicity --dataset_name hERG_Central_1uM --experiment_id enhanced_final --lr 0.001 --dropout_ratio 0.0 --batch_size 512 --num_experts 7 --alpha 0.1 --beta 0.1 --min_temp 1.0 --decay 0.0 --num_layer 5 --emb_dim 300 --gate_dim 50 --split scaffold --epochs 300 --patience 50 --use_combined_trainvalid --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth
