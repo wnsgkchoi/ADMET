@@ -1,0 +1,13 @@
+Dataset Name: PPBR_AZ
+Category: Distribution
+Task Type: regression
+Unit: %
+Description: Plasma Protein Binding Rate
+Total Samples: 1614
+Columns: Drug_ID, Drug, Y
+
+Y Statistics:
+  - Mean: 88.0729
+  - Std: 16.7382
+  - Min: 11.1800
+  - Max: 99.9500

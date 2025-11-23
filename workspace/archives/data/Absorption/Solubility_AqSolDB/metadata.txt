@@ -1,0 +1,13 @@
+Dataset Name: Solubility_AqSolDB
+Category: Absorption
+Task Type: regression
+Unit: log mol/L
+Description: Aqueous solubility
+Total Samples: 9982
+Columns: Drug_ID, Drug, Y
+
+Y Statistics:
+  - Mean: -2.8899
+  - Std: 2.3682
+  - Min: -13.1719
+  - Max: 2.1377

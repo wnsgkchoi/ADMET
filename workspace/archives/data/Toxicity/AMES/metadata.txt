@@ -1,0 +1,10 @@
+Dataset Name: AMES
+Category: Toxicity
+Task Type: classification
+Description: Ames mutagenicity
+Total Samples: 7278
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 1: 3974 (54.60%)
+  - Class 0: 3304 (45.40%)

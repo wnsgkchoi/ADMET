@@ -1,0 +1,13 @@
+Dataset Name: LD50_Zhu
+Category: Toxicity
+Task Type: regression
+Unit: log(1/(mol/kg))
+Description: Acute toxicity LD50
+Total Samples: 7385
+Columns: Drug_ID, Drug, Y
+
+Y Statistics:
+  - Mean: 2.5444
+  - Std: 0.9587
+  - Min: -0.3430
+  - Max: 10.2070

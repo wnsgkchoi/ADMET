@@ -1,0 +1,13 @@
+Dataset Name: VDss_Lombardo
+Category: Distribution
+Task Type: regression
+Unit: L/kg
+Description: Volume of Distribution
+Total Samples: 1130
+Columns: Drug_ID, Drug, Y
+
+Y Statistics:
+  - Mean: 4.1175
+  - Std: 22.3526
+  - Min: 0.0100
+  - Max: 700.0000

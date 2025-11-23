@@ -1,0 +1,13 @@
+Dataset Name: Half_Life_Obach
+Category: Excretion
+Task Type: regression
+Unit: hour
+Description: Half life
+Total Samples: 667
+Columns: Drug_ID, Drug, Y
+
+Y Statistics:
+  - Mean: 18.2129
+  - Std: 81.8692
+  - Min: 0.0650
+  - Max: 1200.0000

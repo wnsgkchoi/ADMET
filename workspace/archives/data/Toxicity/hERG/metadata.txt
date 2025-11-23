@@ -1,0 +1,10 @@
+Dataset Name: hERG
+Category: Toxicity
+Task Type: classification
+Description: hERG blockers
+Total Samples: 655
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 1.0: 451 (68.85%)
+  - Class 0.0: 204 (31.15%)

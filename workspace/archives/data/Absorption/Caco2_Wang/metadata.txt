@@ -1,0 +1,13 @@
+Dataset Name: Caco2_Wang
+Category: Absorption
+Task Type: regression
+Unit: log cm/s
+Description: Caco-2 permeability
+Total Samples: 910
+Columns: Drug_ID, Drug, Y
+
+Y Statistics:
+  - Mean: -5.2395
+  - Std: 0.7772
+  - Min: -7.7600
+  - Max: -3.5100

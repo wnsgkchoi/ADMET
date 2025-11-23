@@ -1,0 +1,10 @@
+Dataset Name: Bioavailability_Ma
+Category: Absorption
+Task Type: classification
+Description: Oral bioavailability
+Total Samples: 640
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 1: 492 (76.88%)
+  - Class 0: 148 (23.12%)

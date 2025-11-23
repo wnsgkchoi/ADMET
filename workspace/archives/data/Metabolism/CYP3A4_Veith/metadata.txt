@@ -1,0 +1,10 @@
+Dataset Name: CYP3A4_Veith
+Category: Metabolism
+Task Type: classification
+Description: CYP3A4 inhibition
+Total Samples: 12328
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 0: 7218 (58.55%)
+  - Class 1: 5110 (41.45%)

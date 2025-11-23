@@ -1,0 +1,10 @@
+Dataset Name: CYP2D6_Veith
+Category: Metabolism
+Task Type: classification
+Description: CYP2D6 inhibition
+Total Samples: 13130
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 0: 10616 (80.85%)
+  - Class 1: 2514 (19.15%)

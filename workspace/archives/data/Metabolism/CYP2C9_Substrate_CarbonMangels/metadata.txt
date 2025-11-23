@@ -1,0 +1,10 @@
+Dataset Name: CYP2C9_Substrate_CarbonMangels
+Category: Metabolism
+Task Type: classification
+Description: CYP2C9 substrate
+Total Samples: 669
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 0: 528 (78.92%)
+  - Class 1: 141 (21.08%)

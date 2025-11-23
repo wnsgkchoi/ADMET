@@ -1,0 +1,13 @@
+Dataset Name: Clearance_Microsome_AZ
+Category: Excretion
+Task Type: regression
+Unit: mL/min/kg
+Description: Clearance (Microsome)
+Total Samples: 1102
+Columns: Drug_ID, Drug, Y
+
+Y Statistics:
+  - Mean: 34.2216
+  - Std: 44.8055
+  - Min: 3.0000
+  - Max: 150.0000

@@ -1,0 +1,10 @@
+Dataset Name: PAMPA_NCATS
+Category: Absorption
+Task Type: classification
+Description: PAMPA permeability
+Total Samples: 2034
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 1: 1739 (85.50%)
+  - Class 0: 295 (14.50%)

@@ -1,0 +1,10 @@
+Dataset Name: ClinTox
+Category: Toxicity
+Task Type: classification
+Description: Clinical trial toxicity
+Total Samples: 1478
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 0: 1366 (92.42%)
+  - Class 1: 112 (7.58%)

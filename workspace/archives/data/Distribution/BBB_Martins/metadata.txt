@@ -1,0 +1,10 @@
+Dataset Name: BBB_Martins
+Category: Distribution
+Task Type: classification
+Description: Blood-Brain Barrier penetration
+Total Samples: 2030
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 1: 1551 (76.40%)
+  - Class 0: 479 (23.60%)

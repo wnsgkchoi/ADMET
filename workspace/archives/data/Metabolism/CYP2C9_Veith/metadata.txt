@@ -1,0 +1,10 @@
+Dataset Name: CYP2C9_Veith
+Category: Metabolism
+Task Type: classification
+Description: CYP2C9 inhibition
+Total Samples: 12092
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 0: 8047 (66.55%)
+  - Class 1: 4045 (33.45%)

@@ -1,0 +1,72 @@
+======================================================================
+ADMET 데이터셋 전체 요약
+======================================================================
+
+
+Absorption: 8개 데이터셋
+--------------------------------------------------
+  - Caco2_Wang
+  - Lipophilicity_AstraZeneca
+  - Solubility_AqSolDB
+  - HydrationFreeEnergy_FreeSolv
+  - HIA_Hou
+  - Pgp_Broccatelli
+  - Bioavailability_Ma
+  - PAMPA_NCATS
+
+Distribution: 3개 데이터셋
+--------------------------------------------------
+  - BBB_Martins
+  - PPBR_AZ
+  - VDss_Lombardo
+
+Metabolism: 8개 데이터셋
+--------------------------------------------------
+  - CYP2C19_Veith
+  - CYP2D6_Veith
+  - CYP3A4_Veith
+  - CYP1A2_Veith
+  - CYP2C9_Veith
+  - CYP2C9_Substrate_CarbonMangels
+  - CYP2D6_Substrate_CarbonMangels
+  - CYP3A4_Substrate_CarbonMangels
+
+Excretion: 3개 데이터셋
+--------------------------------------------------
+  - Half_Life_Obach
+  - Clearance_Hepatocyte_AZ
+  - Clearance_Microsome_AZ
+
+Toxicity: 11개 데이터셋
+--------------------------------------------------
+  - LD50_Zhu
+  - hERG
+  - hERG_Karim
+  - AMES
+  - DILI
+  - Skin_Reaction
+  - Carcinogens_Lagunin
+  - ClinTox
+  - hERG_Central_1uM
+  - hERG_Central_10uM
+  - hERG_Central_inhib
+
+
+전체 데이터셋 수: 33개
+카테고리 수: 5개
+
+폴더 구조:
+ADMET_Data/
+  ├── Absorption/
+  │   ├── Caco2_Wang/
+  │   │   ├── full_data.csv
+  │   │   ├── train.csv
+  │   │   ├── valid.csv
+  │   │   ├── test.csv
+  │   │   └── metadata.txt
+  │   └── ...
+  ├── Distribution/
+  ├── Metabolism/
+  ├── Excretion/
+  ├── Toxicity/
+  └── ADMET_Summary.txt

@@ -1,0 +1,13 @@
+Dataset Name: Clearance_Hepatocyte_AZ
+Category: Excretion
+Task Type: regression
+Unit: mL/min/kg
+Description: Clearance (Hepatocyte)
+Total Samples: 1213
+Columns: Drug_ID, Drug, Y
+
+Y Statistics:
+  - Mean: 42.9004
+  - Std: 49.8473
+  - Min: 3.0000
+  - Max: 150.0000

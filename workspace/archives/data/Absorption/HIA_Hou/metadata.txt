@@ -1,0 +1,10 @@
+Dataset Name: HIA_Hou
+Category: Absorption
+Task Type: classification
+Description: Human Intestinal Absorption
+Total Samples: 578
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 1: 500 (86.51%)
+  - Class 0: 78 (13.49%)

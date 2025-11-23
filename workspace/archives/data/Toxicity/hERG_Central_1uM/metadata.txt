@@ -1,0 +1,13 @@
+Dataset Name: hERG_Central_1uM
+Category: Toxicity
+Task Type: regression
+Unit: % inhibition
+Description: hERG inhibition at 1uM
+Total Samples: 306893
+Columns: Drug_ID, Drug, Y
+
+Y Statistics:
+  - Mean: 6.2463
+  - Std: 11.1963
+  - Min: -299.0170
+  - Max: 126.4892

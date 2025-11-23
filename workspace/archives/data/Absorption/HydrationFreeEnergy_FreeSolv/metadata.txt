@@ -1,0 +1,13 @@
+Dataset Name: HydrationFreeEnergy_FreeSolv
+Category: Absorption
+Task Type: regression
+Unit: kcal/mol
+Description: Hydration free energy
+Total Samples: 642
+Columns: Drug_ID, Drug, Y
+
+Y Statistics:
+  - Mean: -3.8030
+  - Std: 3.8478
+  - Min: -25.4700
+  - Max: 3.4300

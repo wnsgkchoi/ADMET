@@ -1,0 +1,10 @@
+Dataset Name: Pgp_Broccatelli
+Category: Absorption
+Task Type: classification
+Description: P-glycoprotein inhibition
+Total Samples: 1218
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 1: 650 (53.37%)
+  - Class 0: 568 (46.63%)

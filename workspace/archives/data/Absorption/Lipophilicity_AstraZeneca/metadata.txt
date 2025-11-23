@@ -1,0 +1,13 @@
+Dataset Name: Lipophilicity_AstraZeneca
+Category: Absorption
+Task Type: regression
+Unit: log D
+Description: Lipophilicity
+Total Samples: 4200
+Columns: Drug_ID, Drug, Y
+
+Y Statistics:
+  - Mean: 2.1863
+  - Std: 1.2030
+  - Min: -1.5000
+  - Max: 4.5000

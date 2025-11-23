@@ -1,0 +1,10 @@
+Dataset Name: hERG_Central_inhib
+Category: Toxicity
+Task Type: classification
+Description: hERG inhibition (binary)
+Total Samples: 306893
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 0: 293149 (95.52%)
+  - Class 1: 13744 (4.48%)

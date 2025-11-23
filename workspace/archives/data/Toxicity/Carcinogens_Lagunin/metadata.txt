@@ -1,0 +1,10 @@
+Dataset Name: Carcinogens_Lagunin
+Category: Toxicity
+Task Type: classification
+Description: Carcinogenicity
+Total Samples: 280
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 0: 220 (78.57%)
+  - Class 1: 60 (21.43%)

@@ -1,0 +1,10 @@
+Dataset Name: CYP3A4_Substrate_CarbonMangels
+Category: Metabolism
+Task Type: classification
+Description: CYP3A4 substrate
+Total Samples: 670
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 1: 355 (52.99%)
+  - Class 0: 315 (47.01%)

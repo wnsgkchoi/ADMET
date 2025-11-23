@@ -1,0 +1,10 @@
+Dataset Name: Skin_Reaction
+Category: Toxicity
+Task Type: classification
+Description: Skin reaction
+Total Samples: 404
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 1: 274 (67.82%)
+  - Class 0: 130 (32.18%)

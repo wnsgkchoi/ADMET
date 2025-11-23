@@ -1,0 +1,10 @@
+Dataset Name: DILI
+Category: Toxicity
+Task Type: classification
+Description: Drug-Induced Liver Injury
+Total Samples: 475
+Columns: Drug_ID, Drug, Y
+
+Y Distribution:
+  - Class 0.0: 239 (50.32%)
+  - Class 1.0: 236 (49.68%)
