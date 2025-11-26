@@ -1,0 +1,2 @@
+Seed,Model,AUROC,F1,Accuracy,Precision,Recall,Specificity,AUPRC,Best_Params
+seed_1,CatBoost,0.9016,0.6667,0.8750,0.8750,0.5385,0.9767,0.8001,"{'bootstrap_type': 'Bayesian', 'learning_rate': 0.026793035210072418, 'iterations': 594, 'depth': 10, 'l2_leaf_reg': 2.5021282421497144, 'random_strength': 3.003019400654691, 'bagging_temperature': 0.4319075655968374}"

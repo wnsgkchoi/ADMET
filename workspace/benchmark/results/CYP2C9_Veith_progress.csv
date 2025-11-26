@@ -1,0 +1,9 @@
+Seed,Model,AUROC,F1,Accuracy,Precision,Recall,Specificity,AUPRC,Best_Params
+seed_1,CatBoost,0.8824,0.7111,0.8082,0.7321,0.6913,0.8688,0.7875,"{'bootstrap_type': 'MVS', 'learning_rate': 0.12113683326004428, 'iterations': 307, 'depth': 7, 'l2_leaf_reg': 10.591855900622466, 'random_strength': 9.071801534421047, 'subsample': 0.7559369998844688}"
+seed_2,LightGBM,0.8878,0.7527,0.8202,0.7788,0.7283,0.8755,0.8180,"{'learning_rate': 0.032523938113320695, 'n_estimators': 504, 'num_leaves': 178, 'max_depth': 10, 'min_child_samples': 69, 'subsample': 0.6493954840792582, 'colsample_bytree': 0.8262794042375985, 'feature_fraction': 0.6799158463776968, 'bagging_fraction': 0.976541763016358, 'bagging_freq': 6, 'lambda_l1': 2.2839069997005598e-07, 'lambda_l2': 0.1388790015814741, 'min_split_gain': 0.03213001732910836, 'max_bin': 189}"
+seed_3,LightGBM,0.8995,0.7444,0.8433,0.7593,0.7302,0.8948,0.7944,"{'learning_rate': 0.01067662234217158, 'n_estimators': 478, 'num_leaves': 289, 'max_depth': 15, 'min_child_samples': 38, 'subsample': 0.8603287665735451, 'colsample_bytree': 0.7590469871547065, 'feature_fraction': 0.8456534277628824, 'bagging_fraction': 0.6694002709828413, 'bagging_freq': 7, 'lambda_l1': 5.252743691360702e-05, 'lambda_l2': 0.028551331389046995, 'min_split_gain': 0.1295189561149096, 'max_bin': 63}"
+seed_4,CatBoost,0.9130,0.7311,0.8690,0.7575,0.7066,0.9237,0.7924,"{'bootstrap_type': 'Bernoulli', 'learning_rate': 0.042922186855851745, 'iterations': 920, 'depth': 9, 'l2_leaf_reg': 9.580283188069835, 'random_strength': 7.010801230261089, 'subsample': 0.7336885018141741}"
+seed_5,CatBoost,0.8954,0.7480,0.8284,0.7662,0.7307,0.8807,0.8221,"{'bootstrap_type': 'Bayesian', 'learning_rate': 0.1870743664344841, 'iterations': 154, 'depth': 10, 'l2_leaf_reg': 10.994596505449113, 'random_strength': 0.8242474531984523, 'bagging_temperature': 1.2877345885431646}"
+
+Final Summary (Average of Best Models across 5 seeds):
+Mean Best AUROC: 0.8956 ± 0.0105

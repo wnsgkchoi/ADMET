@@ -1,0 +1,9 @@
+Seed,Model,MAE,RMSE,R2,Best_Params
+seed_1,RandomForest,31.5637,113.2334,-0.0222,"{'rf_bootstrap': True, 'n_estimators': 388, 'max_depth': 13, 'min_samples_split': 19, 'min_samples_leaf': 15, 'max_features': 'sqrt', 'ccp_alpha': 0.03242607017798358, 'rf_use_max_samples': True, 'rf_max_samples': 0.5210858060954606}"
+seed_2,CatBoost,17.7713,72.3116,-0.0011,"{'bootstrap_type': 'Bayesian', 'learning_rate': 0.1707567736598611, 'iterations': 518, 'depth': 8, 'l2_leaf_reg': 5.510895710580014, 'random_strength': 6.140495177776266, 'bagging_temperature': 1.225872094702581}"
+seed_3,RandomForest,16.3985,26.7325,0.1762,"{'rf_bootstrap': True, 'n_estimators': 326, 'max_depth': 8, 'min_samples_split': 2, 'min_samples_leaf': 5, 'max_features': 'log2', 'ccp_alpha': 0.08123670346301813, 'rf_use_max_samples': False}"
+seed_4,RandomForest,14.5645,17.2922,-0.0256,"{'rf_bootstrap': False, 'n_estimators': 228, 'max_depth': 17, 'min_samples_split': 29, 'min_samples_leaf': 8, 'max_features': 'log2', 'ccp_alpha': 0.08226276736403103}"
+seed_5,RandomForest,16.8284,25.2470,-0.0843,"{'rf_bootstrap': False, 'n_estimators': 989, 'max_depth': 19, 'min_samples_split': 27, 'min_samples_leaf': 12, 'max_features': 'sqrt', 'ccp_alpha': 0.01872958255588916}"
+
+Final Summary (Average of Best Models across 5 seeds):
+Mean Best MAE: 19.4253 ± 6.1581

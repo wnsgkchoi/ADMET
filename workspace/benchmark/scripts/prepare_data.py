@@ -4,6 +4,7 @@ import pickle
 import json
 import numpy as np
 import pandas as pd
+<<<<<<< HEAD
 import random
 from collections import defaultdict
 from tqdm import tqdm
@@ -21,11 +22,21 @@ except Exception as e:
     print(f"Warning: Could not initialize ADMET Benchmark Group: {e}")
     ADMET_GROUP = None
     ADMET_DATASETS = set()
+=======
+import sys
+
+# Add project root to path to allow imports
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
+
+from tdc.single_pred import Tox, ADME
+from workspace.benchmark.utils import get_dataset_group
+>>>>>>> 06c0ab56d1c4430ff3e23ab6e23fb5f18b88c717
 
 def ensure_dir(path):
     if not os.path.exists(path):
         os.makedirs(path)
 
+<<<<<<< HEAD
 def get_tdc_class(category):
     """카테고리에 따른 TDC 클래스 반환"""
     if category == 'Toxicity':
@@ -42,10 +53,14 @@ def generate_scaffold(smiles, include_chirality=False):
     return MurckoScaffold.MurckoScaffoldSmiles(mol=mol, includeChirality=include_chirality)
 
 def generate_splits(dataset_name, category, output_dir, num_seeds=5):
+=======
+def generate_splits(dataset_name, base_output_dir, num_seeds=5, label_name=None):
+>>>>>>> 06c0ab56d1c4430ff3e23ab6e23fb5f18b88c717
     """
     TDC 데이터셋을 로드하고 5개의 시드에 대해 Scaffold Split을 수행하여 인덱스를 저장합니다.
     단, Test Set은 Seed 1의 결과를 고정하고, Train/Valid만 시드에 따라 변경합니다.
     """
+<<<<<<< HEAD
     print(f"Processing {dataset_name} ({category})...")
     
     # 1. 데이터 로드
@@ -66,11 +81,45 @@ def generate_splits(dataset_name, category, output_dir, num_seeds=5):
         else:
             data = Loader(name=dataset_name)
             
+=======
+    print(f"Processing {dataset_name} (Label: {label_name})...")
+    
+    # 1. 그룹 확인 및 데이터 로드
+    group = get_dataset_group(dataset_name)
+    
+    try:
+        if group == 'Tox':
+            if label_name:
+                data = Tox(name=dataset_name, label_name=label_name)
+                save_dataset_name = f"{dataset_name}_{label_name}"
+            else:
+                data = Tox(name=dataset_name)
+                save_dataset_name = dataset_name
+        elif group == 'ADME':
+            if label_name:
+                data = ADME(name=dataset_name, label_name=label_name)
+                save_dataset_name = f"{dataset_name}_{label_name}"
+            else:
+                data = ADME(name=dataset_name)
+                save_dataset_name = dataset_name
+        else:
+            print(f"Error: Dataset {dataset_name} not found in Tox or ADME groups.")
+            return
+>>>>>>> 06c0ab56d1c4430ff3e23ab6e23fb5f18b88c717
     except Exception as e:
         print(f"Error loading {dataset_name}: {e}")
         return
 
+<<<<<<< HEAD
     # 전체 데이터 가져오기 (인덱스 매핑을 위해 필요)
+=======
+    # 2. 출력 디렉토리 생성 (Group/DatasetName)
+    output_dir = os.path.join(base_output_dir, group, save_dataset_name)
+    ensure_dir(output_dir)
+    print(f"  - Output directory: {output_dir}")
+
+    # 3. 전체 데이터 가져오기
+>>>>>>> 06c0ab56d1c4430ff3e23ab6e23fb5f18b88c717
     df = data.get_data()
     print(f"  - Original columns: {df.columns.tolist()}")
     
@@ -84,16 +133,21 @@ def generate_splits(dataset_name, category, output_dir, num_seeds=5):
     
     print(f"  - Using '{smiles_col}' as SMILES column")
 
-    # 원본 데이터 저장 (나중에 로드할 때 정합성 확인용)
-    data_path = os.path.join(output_dir, f"{dataset_name}_data.csv")
+    # 원본 데이터 저장
+    data_path = os.path.join(output_dir, f"{save_dataset_name}_data.csv")
     df.to_csv(data_path, index=False)
     print(f"  - Saved raw data to {data_path} (Shape: {df.shape})")
 
+<<<<<<< HEAD
     # 2. Split 생성 및 저장
+=======
+    # 4. Split 생성 및 저장
+>>>>>>> 06c0ab56d1c4430ff3e23ab6e23fb5f18b88c717
     split_indices = {}
     
     # 효율성을 위해 SMILES -> Index 맵 생성
     smiles_list = df[smiles_col].values
+<<<<<<< HEAD
     smiles_to_idx = defaultdict(list)
     for i, s in enumerate(smiles_list):
         smiles_to_idx[s].append(i)
@@ -216,13 +270,54 @@ def generate_splits(dataset_name, category, output_dir, num_seeds=5):
     # Pickle 저장
     pkl_path = os.path.join(output_dir, f"{dataset_name}_splits.pkl")
     with open(pkl_path, 'wb') as f:
+=======
+    smiles_to_idx = {s: i for i, s in enumerate(smiles_list)}
+    
+    for seed in range(1, num_seeds + 1):
+        # TDC get_split 사용
+        split = data.get_split(method='scaffold', seed=seed, frac=[0.7, 0.1, 0.2])
+        
+        run_indices = {}
+        for split_name in ['train', 'valid', 'test']:
+            split_df = split[split_name]
+            # split_df에도 smiles_col이 있어야 함
+            if smiles_col not in split_df.columns:
+                 if 'Drug' in split_df.columns:
+                     split_smiles_col = 'Drug'
+                 else:
+                     split_smiles_col = 'Drug_ID'
+            else:
+                split_smiles_col = smiles_col
+            
+            indices = []
+            for s in split_df[split_smiles_col]:
+                if s in smiles_to_idx:
+                    indices.append(smiles_to_idx[s])
+                else:
+                    # print(f"Warning: SMILES not found in original data: {s[:20]}...")
+                    pass
+            
+            run_indices[split_name] = indices
+            
+        split_indices[f'seed_{seed}'] = run_indices
+        print(f"  - Seed {seed}: Train={len(run_indices['train'])}, Valid={len(run_indices['valid'])}, Test={len(run_indices['test'])}")
+
+    # 인덱스 파일 저장
+    idx_path = os.path.join(output_dir, f"{save_dataset_name}_splits.pkl")
+    with open(idx_path, 'wb') as f:
+>>>>>>> 06c0ab56d1c4430ff3e23ab6e23fb5f18b88c717
         pickle.dump(split_indices, f)
     print(f"  - Saved splits to {pkl_path}")
 
 def main():
     parser = argparse.ArgumentParser()
+<<<<<<< HEAD
     parser.add_argument('--config_path', type=str, default='configs/dataset_config.json')
     parser.add_argument('--output_dir', type=str, default='workspace/benchmark/data')
+=======
+    parser.add_argument('--dataset', type=str, default='AMES', help='Dataset name (e.g., AMES)')
+    parser.add_argument('--output_dir', type=str, default='workspace/benchmark/data', help='Base output directory')
+>>>>>>> 06c0ab56d1c4430ff3e23ab6e23fb5f18b88c717
     args = parser.parse_args()
     
     ensure_dir(args.output_dir)

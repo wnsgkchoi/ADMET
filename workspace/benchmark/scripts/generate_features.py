@@ -3,9 +3,14 @@ import argparse
 import pickle
 import pandas as pd
 import numpy as np
+import sys
 from tqdm import tqdm
 from rdkit import Chem
 from rdkit.Chem import Descriptors, Lipinski, AllChem, MACCSkeys, QED
+
+# Add project root to path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
+from workspace.benchmark.utils import get_dataset_path
 
 # ===================================================================
 # 1. 디스크립터 정의 
@@ -162,11 +167,21 @@ def calculate_all_features(smiles, ecfp_radius=2, ecfp_bits=1024):
         'ecfp': ecfp_fp
     }
 
-def generate_features(dataset_name, data_dir):
-    data_path = os.path.join(data_dir, f"{dataset_name}_data.csv")
+def generate_features(dataset_name, base_data_dir):
+    # Use get_dataset_path to find the correct directory
+    dataset_dir = get_dataset_path(base_data_dir, dataset_name)
+    data_path = os.path.join(dataset_dir, f"{dataset_name}_data.csv")
+    
     if not os.path.exists(data_path):
         print(f"Data file not found: {data_path}")
-        return
+        # Fallback to old path if not found in new structure (for backward compatibility or if utils fails)
+        old_path = os.path.join(base_data_dir, f"{dataset_name}_data.csv")
+        if os.path.exists(old_path):
+            print(f"Found in base directory: {old_path}")
+            data_path = old_path
+            dataset_dir = base_data_dir
+        else:
+            return
 
     df = pd.read_csv(data_path)
     print(f"Loaded {dataset_name} data: {df.shape}")
@@ -221,7 +236,7 @@ def generate_features(dataset_name, data_dir):
         if feats is not None:
             feature_matrix[i] = feats
             
-    output_path = os.path.join(data_dir, f"{dataset_name}_features.pkl")
+    output_path = os.path.join(dataset_dir, f"{dataset_name}_features.pkl")
     with open(output_path, 'wb') as f:
         pickle.dump({
             'features': feature_matrix,

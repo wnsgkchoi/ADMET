@@ -1,0 +1,9 @@
+Seed,Model,AUROC,F1,Accuracy,Precision,Recall,Specificity,AUPRC,Best_Params
+seed_1,RandomForest,0.8898,0.8723,0.8182,0.8454,0.9011,0.6341,0.9489,"{'rf_bootstrap': False, 'n_estimators': 780, 'max_depth': 10, 'min_samples_split': 28, 'min_samples_leaf': 3, 'max_features': 'sqrt', 'ccp_alpha': 0.003971377291795287}"
+seed_2,CatBoost,0.8515,0.8521,0.8106,0.8182,0.8889,0.6863,0.8746,"{'bootstrap_type': 'MVS', 'learning_rate': 0.19210141065305456, 'iterations': 772, 'depth': 7, 'l2_leaf_reg': 1.2220606091496609, 'random_strength': 9.235584916130993, 'subsample': 0.6750374432769463}"
+seed_3,CatBoost,0.8392,0.8098,0.7652,0.7416,0.8919,0.6034,0.8429,"{'bootstrap_type': 'Bayesian', 'learning_rate': 0.11987871624531692, 'iterations': 450, 'depth': 5, 'l2_leaf_reg': 8.51302376230047, 'random_strength': 5.102682548317262, 'bagging_temperature': 1.1633841487369747}"
+seed_4,CatBoost,0.8735,0.8955,0.8409,0.8654,0.9278,0.6000,0.9343,"{'bootstrap_type': 'Bayesian', 'learning_rate': 0.0389534816699416, 'iterations': 873, 'depth': 12, 'l2_leaf_reg': 11.271564479568601, 'random_strength': 8.00934042039292, 'bagging_temperature': 0.7226547805377317}"
+seed_5,CatBoost,0.9067,0.9167,0.8788,0.8800,0.9565,0.7000,0.9348,"{'bootstrap_type': 'MVS', 'learning_rate': 0.028723194597890658, 'iterations': 719, 'depth': 3, 'l2_leaf_reg': 6.8620859584733545, 'random_strength': 9.7130856085033, 'subsample': 0.6740828610753618}"
+
+Final Summary (Average of Best Models across 5 seeds):
+Mean Best AUROC: 0.8721 ± 0.0246
