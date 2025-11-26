@@ -68,7 +68,7 @@ def create_objective(X_train, y_train, X_valid, y_valid, task_type):
                     booster = 'gbtree' # ADMET_Ver4.ipynb uses default (gbtree)
                     params = {
                         'objective': 'binary:logistic', 'random_state': 42, 'n_jobs': -1,
-                        'scale_pos_weight': scale_pos_weight, 'tree_method':'hist', 'device': 'cuda',
+                        'scale_pos_weight': scale_pos_weight, 'tree_method':'hist', 'device': 'cpu',
                         'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.3, log=True),
                         'n_estimators': trial.suggest_int('n_estimators', 100, 1000),
                         'max_depth': trial.suggest_int('max_depth', 3, 12),
@@ -131,7 +131,7 @@ def create_objective(X_train, y_train, X_valid, y_valid, task_type):
                     bootstrap_type = trial.suggest_categorical('bootstrap_type', ['Bayesian', 'Bernoulli', 'MVS'])
                     params = {
                         'random_state':42,'logging_level':'Silent','loss_function':'Logloss','scale_pos_weight':scale_pos_weight,
-                        'task_type': 'GPU',
+                        'task_type': 'CPU',
                         'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.3, log=True),
                         'iterations': trial.suggest_int('iterations', 100, 1000),
                         'depth': trial.suggest_int('depth', 3, 12),

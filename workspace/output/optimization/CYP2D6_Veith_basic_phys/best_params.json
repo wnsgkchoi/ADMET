@@ -1,0 +1,10 @@
+{
+    "lr": 3.077881504587862e-05,
+    "dropout_ratio": 0.4,
+    "num_layer": 6,
+    "num_experts": 5,
+    "batch_size": 64,
+    "emb_dim": 300,
+    "alpha": 0.21140628144551646,
+    "beta": 0.007408932117666754
+}

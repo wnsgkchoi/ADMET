@@ -16,6 +16,8 @@ from loader import MoleculeCSVDataset
 from TopExpert import GNN_topexpert
 from utils import *
 
+import optuna
+
 def qprint(msg, args):
     """Conditional print: only print if not in quiet mode"""
     if not args.quiet:
@@ -384,6 +386,9 @@ def eval(args, model, loader):
                 
         y_true_list.append(batch.y.view(batch.id.shape[0], -1))
 
+    if not y_true_list:
+        return float('nan'), {}
+
     y_true = torch.cat(y_true_list, dim=0).cpu().numpy()
     y_pred = torch.cat(y_pred_list, dim=0).cpu().numpy()
 
@@ -484,13 +489,13 @@ def save_results_to_csv(args, val_metric, test_metric, val_std=None, test_std=No
         print(f"ERROR: Failed to save results to CSV: {e}", file=sys.stderr)
 
 
-def main(args):
+def main(args, trial=None):
     set_seed(args.seed)    
 
     # Check for benchmark split file
-    if args.dataset_name == 'AMES' and not args.benchmark_split_file:
-        # Auto-detect for AMES if not provided
-        potential_split_file = 'workspace/benchmark/data/AMES_splits.pkl'
+    if args.dataset_name and not args.benchmark_split_file:
+        # Auto-detect if not provided
+        potential_split_file = f'workspace/benchmark/data/{args.dataset_name}_splits.pkl'
         if os.path.exists(potential_split_file):
             args.benchmark_split_file = potential_split_file
             qprint(f"Auto-detected benchmark split file: {args.benchmark_split_file}", args)
@@ -631,7 +636,8 @@ def main(args):
             valid_subset = train_dataset[torch.tensor(valid_subset_idx)]
             test_dataset = dataset[torch.tensor(test_idx)]
 
-            train_loader = DataLoader(train_subset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
+            drop_last = len(train_subset) > args.batch_size
+            train_loader = DataLoader(train_subset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers, drop_last=drop_last)
             val_loader = DataLoader(valid_subset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
             test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
 
@@ -660,7 +666,10 @@ def main(args):
 
             ###### init centroid using randomly initialized gnn
             zs_init = get_z(model, train_loader, args.device)
-            init_centroid(model, zs_init, args.num_experts)
+            if zs_init.numel() > 0:
+                init_centroid(model, zs_init, args.num_experts)
+            else:
+                qprint("Warning: Empty training set or batch size too large. Skipping K-Means initialization for centroids.", args)
         
             best_val_acc = 0
             patience_counter = 0
@@ -668,11 +677,26 @@ def main(args):
                 train(args, model, train_loader, optimizer, scf_tr)
                 val_acc, _ = eval(args, model, val_loader)
                 
-                if val_acc > best_val_acc:
-                    best_val_acc = val_acc
-                    patience_counter = 0
-                else:
-                    patience_counter += 1
+                if np.isnan(val_acc):
+                    # Handle empty validation set
+                    val_acc = 9999.0 if args.task_type == 'regression' else 0.0
+
+                if args.task_type == 'classification':
+                    if val_acc > best_val_acc:
+                        best_val_acc = val_acc
+                        patience_counter = 0
+                    else:
+                        patience_counter += 1
+                else: # regression (minimize MAE)
+                    # Initialize best_val_acc for regression if it's 0 (which is default but wrong for minimization)
+                    if epoch == 1 and best_val_acc == 0:
+                         best_val_acc = 9999.0
+                         
+                    if val_acc < best_val_acc:
+                        best_val_acc = val_acc
+                        patience_counter = 0
+                    else:
+                        patience_counter += 1
 
                 if patience_counter >= args.patience:
                     qprint(f"Early stopping at epoch {epoch}", args)
@@ -709,7 +733,8 @@ def main(args):
             train_dataset, valid_dataset, test_dataset = data_split(args, dataset)
         # else: ADMET datasets already have train_dataset, valid_dataset, test_dataset defined
 
-        train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
+        drop_last = len(train_dataset) > args.batch_size
+        train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers, drop_last=drop_last)
         
         # Only create val_loader if valid_dataset exists (not in combined mode)
         if valid_dataset is not None:
@@ -770,6 +795,22 @@ def main(args):
         args.temp_alpha = np.exp(np.log(args.min_temp / 10 + 1e-10) / (args.epochs * num_iter))
 
 
+        ## define a model and load chek points
+        model = GNN_topexpert(args, criterion)
+        if args.gin_pretrained_file:
+            model.from_pretrained(args.gin_pretrained_file)
+
+        model = model.to(args.device)
+        optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=args.lr, weight_decay=args.decay)
+
+        ###### init centroid using randomly initialized gnn
+        zs_init = get_z(model, train_loader, args.device)
+        if zs_init.numel() > 0:
+            init_centroid(model, zs_init, args.num_experts)
+        else:
+            qprint("Warning: Empty training set or batch size too large. Skipping K-Means initialization for centroids.", args)
+    
+        # Prepare checkpoint directory
         ## define a model and load chek points
         model = GNN_topexpert(args, criterion)
         if args.gin_pretrained_file:
@@ -902,6 +943,16 @@ def main(args):
             if patience_counter >= args.patience:
                 qprint(f"Early stopping at epoch {epoch}", args)
                 break
+            
+            # Optuna Pruning
+            if trial is not None:
+                # Report intermediate objective value
+                trial.report(best_val_acc, epoch)
+
+                # Handle pruning based on the intermediate value
+                if trial.should_prune():
+                    qprint(f"Trial pruned at epoch {epoch}", args)
+                    raise optuna.exceptions.TrialPruned()
         
         # Final evaluation logic
         if not args.no_save_model:
@@ -946,6 +997,7 @@ def main(args):
                 train_metric=final_train_acc,
                 train_secondary=final_train_secondary
             )
+            return final_test_acc, final_test_secondary
         else:
             # Normal mode with validation
             save_results_to_csv(
@@ -961,8 +1013,10 @@ def main(args):
                 train_metric=final_train_acc,
                 train_secondary=final_train_secondary
             )
+            return best_val_acc, final_test_acc, final_test_secondary
 
 if __name__ == "__main__":
+    import optuna # Import optuna for exception handling
     args = load_args()
     main(args)
 

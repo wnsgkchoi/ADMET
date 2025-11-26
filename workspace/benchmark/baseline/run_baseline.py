@@ -165,13 +165,13 @@ def run_baseline(dataset_name, data_dir, output_dir, n_trials=20, num_seeds=5, s
                 final_params = sanitize_params_for_estimator(XGBClassifier, best_params)
                 # Recalculate scale_pos_weight for full train if needed, but let's use the one from train
                 # Actually, let's just use the params as is.
-                model = XGBClassifier(**final_params, objective='binary:logistic', random_state=42, device='cuda')
+                model = XGBClassifier(**final_params, objective='binary:logistic', random_state=42, device='cpu', tree_method='hist')
             elif m_name == 'LightGBM':
                 final_params = sanitize_params_for_estimator(LGBMClassifier, best_params)
-                model = LGBMClassifier(**final_params, objective='binary', random_state=42, verbosity=-1, device='gpu')
+                model = LGBMClassifier(**final_params, objective='binary', random_state=42, verbosity=-1, device='cpu')
             elif m_name == 'CatBoost':
                 final_params = sanitize_params_for_estimator(CatBoostClassifier, best_params)
-                model = CatBoostClassifier(**final_params, loss_function='Logloss', random_state=42, logging_level='Silent', task_type='GPU')
+                model = CatBoostClassifier(**final_params, loss_function='Logloss', random_state=42, logging_level='Silent', task_type='CPU')
             else:
                 final_params = sanitize_params_for_estimator(RandomForestClassifier, best_params)
                 model = RandomForestClassifier(**final_params, random_state=42, class_weight='balanced')
@@ -197,9 +197,24 @@ def run_baseline(dataset_name, data_dir, output_dir, n_trials=20, num_seeds=5, s
             metrics = evaluate_model_classification(y_test, test_proba)
             print(f"    Test AUROC: {metrics['AUROC']:.4f}")
             
+            metrics['best_params'] = best_params
             seed_results[m_name] = metrics
             
         results.append({'seed': seed_name, 'results': seed_results})
+        
+        # Log best model for this seed to CSV
+        best_model_name = max(seed_results, key=lambda k: seed_results[k]['AUROC'])
+        best_metric = seed_results[best_model_name]['AUROC']
+        best_params_str = str(seed_results[best_model_name]['best_params'])
+        
+        progress_csv = os.path.join(output_dir, f"{dataset_name}_progress.csv")
+        file_exists = os.path.isfile(progress_csv)
+        
+        with open(progress_csv, 'a') as f:
+            if not file_exists:
+                f.write("Seed,Model,Test_AUROC,Best_Params\n")
+            f.write(f"{seed_name},{best_model_name},{best_metric:.4f},\"{best_params_str}\"\n")
+        print(f"Logged best result for {seed_name} to {progress_csv}")
         
     # Save results
     if seed_index is not None or model_name is not None:

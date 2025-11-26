@@ -22,13 +22,7 @@ fixed_params = {
 # Feature Variations
 variations = [
     ("Basic", ["basic"]),
-    ("Phys", ["basic", "phys"]),
-    ("MACCS", ["basic", "maccs"]),
-    ("ECFP", ["basic", "ecfp"]),
-    ("Basic_Phys_MACCS", ["basic", "phys", "maccs"]),
-    ("Basic_Phys_ECFP", ["basic", "phys", "ecfp"]),
-    ("Basic_MACCS_ECFP", ["basic", "maccs", "ecfp"]),
-    ("All", ["basic", "phys", "maccs", "ecfp"])
+    ("Phys", ["basic", "phys"])
 ]
 
 # Grid Search Space
@@ -40,7 +34,7 @@ search_space = {
     "num_layer": [3, 5, 7],
     "batch_size": [32, 128],
     "emb_dim": [300],
-    "decay": [0.00001, 0.0001]
+    "decay": [0, 0.00001, 0.0001]
 }
 
 def generate_commands():
@@ -61,7 +55,8 @@ def generate_commands():
             # Construct Experiment ID
             exp_id = f"ablation_{var_name}_{i}"
             
-            cmd_parts = ["python workspace/src/main.py"]
+            # Use run_5seeds.py instead of main.py
+            cmd_parts = ["python workspace/src/scripts/run_5seeds.py"]
             
             # Add fixed params
             for k, v in fixed_params.items():

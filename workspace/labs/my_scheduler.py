@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 from rich.live import Live
 from rich.layout import Layout
 from rich.panel import Panel
-from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, TimeRemainingColumn
+from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, TimeRemainingColumn, ProgressColumn
 from rich.table import Table
 from rich.console import Group
 from rich.text import Text
@@ -101,9 +101,14 @@ def worker(gpu_id, log_dir, error_file, progress, task_id):
         
         try:
             with open(log_path, "w") as f_out:
+                # Wrap command to ensure ADMET environment
+                # Use bash explicitly to support 'source' and 'conda activate'
+                wrapped_command = f"source /home/choi0425/miniconda3/etc/profile.d/conda.sh && conda activate ADMET && {command}"
+                
                 process = subprocess.Popen(
-                    command, 
+                    wrapped_command, 
                     shell=True, 
+                    executable="/bin/bash",
                     env=env, 
                     stdout=f_out, 
                     stderr=subprocess.STDOUT,
@@ -151,6 +156,36 @@ def worker(gpu_id, log_dir, error_file, progress, task_id):
                 add_log(f"Critical Error on Job #{job_index}: {str(e)}", style="bold red")
 
         job_queue.task_done()
+
+class TimeStatsColumn(ProgressColumn):
+    def render(self, task):
+        if task.start_time is None:
+            return Text("")
+        
+        # Start Time (KST)
+        start_dt = datetime.utcfromtimestamp(task.start_time) + timedelta(hours=9)
+        start_str = start_dt.strftime("%H:%M:%S")
+        
+        # Current Time (KST)
+        now_dt = datetime.utcnow() + timedelta(hours=9)
+        now_str = now_dt.strftime("%H:%M:%S")
+        
+        # Elapsed
+        elapsed = task.elapsed
+        if elapsed is None:
+            elapsed_str = "00:00:00"
+        else:
+            elapsed_str = str(timedelta(seconds=int(elapsed)))
+            
+        # Remaining
+        remaining = task.time_remaining
+        if remaining is None:
+            remaining_str = "-:--:--"
+        else:
+            remaining_str = str(timedelta(seconds=int(remaining)))
+            
+        text = f"Start: {start_str} | Now: {now_str} | Run: {elapsed_str} | ETA: {remaining_str}"
+        return Text(text, style="cyan")
 
 def generate_layout(progress_obj, sorted_gpu_ids, gpu_config):
     # 터미널 크기에 맞춰 레이아웃 동적 조정
@@ -243,7 +278,7 @@ def main():
         BarColumn(),
         TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
         TextColumn("{task.completed}/{task.total}"),
-        TimeRemainingColumn(),
+        TimeStatsColumn(),
     )
     task_id = progress.add_task("Processing...", total=total_jobs)
 

@@ -447,11 +447,10 @@ class MoleculeCSVDataset(InMemoryDataset):
         # self.root is 'workspace/data/train'
         raw_path = os.path.join(self.root, f"{self.dataset_name}.csv")
 
-        # Check for benchmark data first (AMES_data.csv)
-        if self.dataset_name == 'AMES':
-             benchmark_path = os.path.join(self.root, 'AMES_data.csv')
-             if os.path.exists(benchmark_path):
-                 raw_path = benchmark_path
+        # Check for benchmark data naming convention ({name}_data.csv)
+        benchmark_path = os.path.join(self.root, f"{self.dataset_name}_data.csv")
+        if os.path.exists(benchmark_path):
+            raw_path = benchmark_path
 
         if not os.path.exists(raw_path):
              # Fallback for original filenames if needed, though the user confirmed new names

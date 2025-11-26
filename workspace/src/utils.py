@@ -117,6 +117,8 @@ def get_z(model, loader, device):
             _, z, _ = model(batch)
         z_s.append(z)
 
+    if not z_s:
+        return torch.tensor([]).to(device)
     
     z_s = torch.cat(z_s, dim=0)
     return z_s

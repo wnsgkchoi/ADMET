@@ -1,0 +1,584 @@
+[2025-11-24 08:17:27.312905] Job #1 Failed (GPU 0)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 3 --batch_size 32 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_0 --output_dir workspace/output/ablation/Basic
+Log: logs/job_1.log
+
+[2025-11-24 08:17:27.372443] Job #10 Failed (GPU 1)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 5 --batch_size 128 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_9 --output_dir workspace/output/ablation/Basic
+Log: logs/job_10.log
+
+[2025-11-24 08:17:27.394101] Job #8 Failed (GPU 1)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 5 --batch_size 32 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_7 --output_dir workspace/output/ablation/Basic
+Log: logs/job_8.log
+
+[2025-11-24 08:17:27.445520] Job #6 Failed (GPU 0)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 3 --batch_size 128 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_5 --output_dir workspace/output/ablation/Basic
+Log: logs/job_6.log
+
+[2025-11-24 08:17:27.531555] Job #2 Failed (GPU 0)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 3 --batch_size 32 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_1 --output_dir workspace/output/ablation/Basic
+Log: logs/job_2.log
+
+[2025-11-24 08:17:27.596630] Job #3 Failed (GPU 0)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 3 --batch_size 32 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_2 --output_dir workspace/output/ablation/Basic
+Log: logs/job_3.log
+
+[2025-11-24 08:17:27.600542] Job #13 Failed (GPU 2)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 7 --batch_size 32 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_12 --output_dir workspace/output/ablation/Basic
+Log: logs/job_13.log
+
+[2025-11-24 08:17:27.683887] Job #17 Failed (GPU 2)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 7 --batch_size 128 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_16 --output_dir workspace/output/ablation/Basic
+Log: logs/job_17.log
+
+[2025-11-24 08:17:27.684392] Job #20 Failed (GPU 3)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 5 --num_layer 3 --batch_size 32 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_19 --output_dir workspace/output/ablation/Basic
+Log: logs/job_20.log
+
+[2025-11-24 08:17:27.787182] Job #18 Failed (GPU 2)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 7 --batch_size 128 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_17 --output_dir workspace/output/ablation/Basic
+Log: logs/job_18.log
+
+[2025-11-24 08:17:27.789734] Job #7 Failed (GPU 1)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 5 --batch_size 32 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_6 --output_dir workspace/output/ablation/Basic
+Log: logs/job_7.log
+
+[2025-11-24 08:17:27.789980] Job #23 Failed (GPU 3)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 5 --num_layer 3 --batch_size 128 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_22 --output_dir workspace/output/ablation/Basic
+Log: logs/job_23.log
+
+[2025-11-24 08:17:28.078253] Job #4 Failed (GPU 0)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 3 --batch_size 128 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_3 --output_dir workspace/output/ablation/Basic
+Log: logs/job_4.log
+
+[2025-11-24 08:17:28.144715] Job #21 Failed (GPU 3)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 5 --num_layer 3 --batch_size 32 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_20 --output_dir workspace/output/ablation/Basic
+Log: logs/job_21.log
+
+[2025-11-24 08:17:28.311849] Job #19 Failed (GPU 3)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 5 --num_layer 3 --batch_size 32 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_18 --output_dir workspace/output/ablation/Basic
+Log: logs/job_19.log
+
+[2025-11-24 08:17:28.322796] Job #14 Failed (GPU 2)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 7 --batch_size 32 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_13 --output_dir workspace/output/ablation/Basic
+Log: logs/job_14.log
+
+[2025-11-24 08:17:28.325487] Job #12 Failed (GPU 1)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 5 --batch_size 128 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_11 --output_dir workspace/output/ablation/Basic
+Log: logs/job_12.log
+
+[2025-11-24 08:17:28.340697] Job #11 Failed (GPU 1)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 5 --batch_size 128 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_10 --output_dir workspace/output/ablation/Basic
+Log: logs/job_11.log
+
+[2025-11-24 08:17:28.351497] Job #15 Failed (GPU 2)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 7 --batch_size 32 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_14 --output_dir workspace/output/ablation/Basic
+Log: logs/job_15.log
+
+[2025-11-24 08:17:28.451766] Job #24 Failed (GPU 3)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 5 --num_layer 3 --batch_size 128 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_23 --output_dir workspace/output/ablation/Basic
+Log: logs/job_24.log
+
+[2025-11-24 08:17:28.476012] Job #9 Failed (GPU 1)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 5 --batch_size 32 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_8 --output_dir workspace/output/ablation/Basic
+Log: logs/job_9.log
+
+[2025-11-24 08:17:28.712501] Job #22 Failed (GPU 3)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 5 --num_layer 3 --batch_size 128 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_21 --output_dir workspace/output/ablation/Basic
+Log: logs/job_22.log
+
+[2025-11-24 08:17:28.768411] Job #16 Failed (GPU 2)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 7 --batch_size 128 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_15 --output_dir workspace/output/ablation/Basic
+Log: logs/job_16.log
+
+[2025-11-24 08:17:28.956455] Job #5 Failed (GPU 0)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 3 --batch_size 128 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_4 --output_dir workspace/output/ablation/Basic
+Log: logs/job_5.log
+
+[2025-11-24 08:20:03.149325] Job #16 Failed (GPU 2)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 7 --batch_size 128 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_15 --output_dir workspace/output/ablation/Basic
+Log: logs/job_16.log
+
+[2025-11-24 08:20:03.149731] Job #23 Failed (GPU 3)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 5 --num_layer 3 --batch_size 128 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_22 --output_dir workspace/output/ablation/Basic
+Log: logs/job_23.log
+
+[2025-11-24 08:20:03.161648] Job #10 Failed (GPU 1)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 5 --batch_size 128 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_9 --output_dir workspace/output/ablation/Basic
+Log: logs/job_10.log
+
+[2025-11-24 08:20:03.201082] Job #5 Failed (GPU 0)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 3 --batch_size 128 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_4 --output_dir workspace/output/ablation/Basic
+Log: logs/job_5.log
+
+[2025-11-24 08:20:03.205807] Job #20 Failed (GPU 3)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 5 --num_layer 3 --batch_size 32 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_19 --output_dir workspace/output/ablation/Basic
+Log: logs/job_20.log
+
+[2025-11-24 08:20:03.220055] Job #8 Failed (GPU 1)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 5 --batch_size 32 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_7 --output_dir workspace/output/ablation/Basic
+Log: logs/job_8.log
+
+[2025-11-24 08:20:03.232444] Job #18 Failed (GPU 2)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 7 --batch_size 128 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_17 --output_dir workspace/output/ablation/Basic
+Log: logs/job_18.log
+
+[2025-11-24 08:20:03.345050] Job #13 Failed (GPU 2)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 7 --batch_size 32 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_12 --output_dir workspace/output/ablation/Basic
+Log: logs/job_13.log
+
+[2025-11-24 08:20:03.350198] Job #1 Failed (GPU 0)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 3 --batch_size 32 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_0 --output_dir workspace/output/ablation/Basic
+Log: logs/job_1.log
+
+[2025-11-24 08:20:03.527843] Job #19 Failed (GPU 3)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 5 --num_layer 3 --batch_size 32 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_18 --output_dir workspace/output/ablation/Basic
+Log: logs/job_19.log
+
+[2025-11-24 08:20:03.528360] Job #14 Failed (GPU 2)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 7 --batch_size 32 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_13 --output_dir workspace/output/ablation/Basic
+Log: logs/job_14.log
+
+[2025-11-24 08:20:03.530986] Job #11 Failed (GPU 1)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 5 --batch_size 128 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_10 --output_dir workspace/output/ablation/Basic
+Log: logs/job_11.log
+
+[2025-11-24 08:20:03.657674] Job #3 Failed (GPU 0)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 3 --batch_size 32 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_2 --output_dir workspace/output/ablation/Basic
+Log: logs/job_3.log
+
+[2025-11-24 08:20:03.658065] Job #15 Failed (GPU 2)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 7 --batch_size 32 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_14 --output_dir workspace/output/ablation/Basic
+Log: logs/job_15.log
+
+[2025-11-24 08:20:03.818103] Job #7 Failed (GPU 1)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 5 --batch_size 32 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_6 --output_dir workspace/output/ablation/Basic
+Log: logs/job_7.log
+
+[2025-11-24 08:20:03.907479] Job #21 Failed (GPU 3)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 5 --num_layer 3 --batch_size 32 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_20 --output_dir workspace/output/ablation/Basic
+Log: logs/job_21.log
+
+[2025-11-24 08:20:03.910306] Job #22 Failed (GPU 3)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 5 --num_layer 3 --batch_size 128 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_21 --output_dir workspace/output/ablation/Basic
+Log: logs/job_22.log
+
+[2025-11-24 08:20:03.910860] Job #6 Failed (GPU 0)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 3 --batch_size 128 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_5 --output_dir workspace/output/ablation/Basic
+Log: logs/job_6.log
+
+[2025-11-24 08:20:03.916588] Job #12 Failed (GPU 1)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 5 --batch_size 128 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_11 --output_dir workspace/output/ablation/Basic
+Log: logs/job_12.log
+
+[2025-11-24 08:20:03.917643] Job #2 Failed (GPU 0)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 3 --batch_size 32 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_1 --output_dir workspace/output/ablation/Basic
+Log: logs/job_2.log
+
+[2025-11-24 08:20:03.917958] Job #4 Failed (GPU 0)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 3 --batch_size 128 --emb_dim 300 --decay 0 --features basic --experiment_id ablation_Basic_3 --output_dir workspace/output/ablation/Basic
+Log: logs/job_4.log
+
+[2025-11-24 08:20:03.963940] Job #24 Failed (GPU 3)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 5 --num_layer 3 --batch_size 128 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_23 --output_dir workspace/output/ablation/Basic
+Log: logs/job_24.log
+
+[2025-11-24 08:20:04.232187] Job #9 Failed (GPU 1)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 5 --batch_size 32 --emb_dim 300 --decay 0.0001 --features basic --experiment_id ablation_Basic_8 --output_dir workspace/output/ablation/Basic
+Log: logs/job_9.log
+
+[2025-11-24 08:20:04.239487] Job #17 Failed (GPU 2)
+Command: python workspace/src/scripts/run_5seeds.py --dataset_name AMES --config_path configs/dataset_config.json --epochs 500 --patience 50 --gnn_type gin --gin_pretrained_file workspace/src/pre-trained/supervised_contextpred.pth --quiet --no_save_model --lr 0.001 --dropout_ratio 0.3 --num_experts 3 --num_layer 7 --batch_size 128 --emb_dim 300 --decay 1e-05 --features basic --experiment_id ablation_Basic_16 --output_dir workspace/output/ablation/Basic
+Log: logs/job_17.log
+
+[2025-11-26 01:45:50.063199] Job #1 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Caco2_Wang --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_1.log
+
+[2025-11-26 01:45:50.065213] Job #2 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Caco2_Wang --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_2.log
+
+[2025-11-26 01:45:50.068261] Job #3 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Pgp_Broccatelli --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_3.log
+
+[2025-11-26 01:45:50.072184] Job #4 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Pgp_Broccatelli --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_4.log
+
+[2025-11-26 01:45:50.074499] Job #5 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name HIA_Hou --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_5.log
+
+[2025-11-26 01:45:50.078133] Job #6 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name HIA_Hou --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_6.log
+
+[2025-11-26 01:45:50.082315] Job #7 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Bioavailability_Ma --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_7.log
+
+[2025-11-26 01:45:50.094004] Job #8 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Bioavailability_Ma --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_8.log
+
+[2025-11-26 01:45:50.109737] Job #13 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name HydrationFreeEnergy_FreeSolv --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_13.log
+
+[2025-11-26 01:45:50.116107] Job #10 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Solubility_AqSolDB --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_10.log
+
+[2025-11-26 01:45:50.118015] Job #15 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name PAMPA_NCATS --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_15.log
+
+[2025-11-26 01:45:50.121004] Job #11 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Lipophilicity_AstraZeneca --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_11.log
+
+[2025-11-26 01:45:50.125119] Job #9 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Solubility_AqSolDB --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_9.log
+
+[2025-11-26 01:45:50.127854] Job #14 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name HydrationFreeEnergy_FreeSolv --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_14.log
+
+[2025-11-26 01:45:50.130099] Job #12 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Lipophilicity_AstraZeneca --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_12.log
+
+[2025-11-26 01:45:50.135085] Job #16 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name PAMPA_NCATS --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_16.log
+
+[2025-11-26 01:45:50.144146] Job #17 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name VDss_Lombardo --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_17.log
+
+[2025-11-26 01:45:50.151823] Job #19 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name PPBR_AZ --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_19.log
+
+[2025-11-26 01:45:50.157881] Job #21 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name BBB_Martins --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_21.log
+
+[2025-11-26 01:45:50.162253] Job #22 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name BBB_Martins --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_22.log
+
+[2025-11-26 01:45:50.164248] Job #18 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name VDss_Lombardo --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_18.log
+
+[2025-11-26 01:45:50.166443] Job #20 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name PPBR_AZ --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_20.log
+
+[2025-11-26 01:45:50.179355] Job #25 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C9_Substrate_CarbonMangels --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_25.log
+
+[2025-11-26 01:45:50.185854] Job #26 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C9_Substrate_CarbonMangels --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_26.log
+
+[2025-11-26 01:45:50.190022] Job #24 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C9_Veith --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_24.log
+
+[2025-11-26 01:45:50.192191] Job #27 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP3A4_Veith --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_27.log
+
+[2025-11-26 01:45:50.194921] Job #28 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP3A4_Veith --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_28.log
+
+[2025-11-26 01:45:50.197125] Job #29 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2D6_Veith --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_29.log
+
+[2025-11-26 01:45:50.200320] Job #23 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C9_Veith --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_23.log
+
+[2025-11-26 01:45:50.213257] Job #30 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2D6_Veith --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_30.log
+
+[2025-11-26 01:45:50.221192] Job #32 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2D6_Substrate_CarbonMangels --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_32.log
+
+[2025-11-26 01:45:50.224085] Job #31 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2D6_Substrate_CarbonMangels --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_31.log
+
+[2025-11-26 01:45:50.227881] Job #33 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C19_Veith --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_33.log
+
+[2025-11-26 01:45:50.234072] Job #36 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP3A4_Substrate_CarbonMangels --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_36.log
+
+[2025-11-26 01:45:50.240674] Job #34 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C19_Veith --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_34.log
+
+[2025-11-26 01:45:50.242651] Job #35 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP3A4_Substrate_CarbonMangels --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_35.log
+
+[2025-11-26 01:45:50.245549] Job #37 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP1A2_Veith --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_37.log
+
+[2025-11-26 01:45:50.258315] Job #40 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Clearance_Hepatocyte_AZ --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_40.log
+
+[2025-11-26 01:45:50.261412] Job #38 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP1A2_Veith --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_38.log
+
+[2025-11-26 01:45:50.266827] Job #39 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Clearance_Hepatocyte_AZ --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_39.log
+
+[2025-11-26 01:45:50.269469] Job #42 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Half_Life_Obach --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_42.log
+
+[2025-11-26 01:45:50.272666] Job #43 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Clearance_Microsome_AZ --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_43.log
+
+[2025-11-26 01:45:50.274945] Job #41 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Half_Life_Obach --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_41.log
+
+[2025-11-26 01:45:50.276492] Job #44 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Clearance_Microsome_AZ --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_44.log
+
+[2025-11-26 01:45:50.292918] Job #45 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_45.log
+
+[2025-11-26 01:45:50.303838] Job #50 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Central_inhib --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_50.log
+
+[2025-11-26 01:45:50.306015] Job #49 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Central_inhib --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_49.log
+
+[2025-11-26 01:45:50.306921] Job #46 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_46.log
+
+[2025-11-26 01:45:50.310752] Job #47 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Carcinogens_Lagunin --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_47.log
+
+[2025-11-26 01:45:50.324457] Job #52 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Karim --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_52.log
+
+[2025-11-26 01:45:50.328049] Job #51 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Karim --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_51.log
+
+[2025-11-26 01:45:50.328705] Job #48 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Carcinogens_Lagunin --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_48.log
+
+[2025-11-26 01:45:50.340216] Job #54 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name ClinTox --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_54.log
+
+[2025-11-26 01:45:50.342771] Job #53 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name ClinTox --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_53.log
+
+[2025-11-26 01:45:50.353179] Job #55 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name LD50_Zhu --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_55.log
+
+[2025-11-26 01:45:50.355327] Job #57 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Central_10uM --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_57.log
+
+[2025-11-26 01:45:50.356655] Job #56 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name LD50_Zhu --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_56.log
+
+[2025-11-26 01:45:50.367055] Job #59 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name DILI --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_59.log
+
+[2025-11-26 01:45:50.373436] Job #61 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Skin_Reaction --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_61.log
+
+[2025-11-26 01:45:50.373732] Job #58 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Central_10uM --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_58.log
+
+[2025-11-26 01:45:50.376509] Job #60 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name DILI --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_60.log
+
+[2025-11-26 01:45:50.386888] Job #63 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Central_1uM --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_63.log
+
+[2025-11-26 01:45:50.389413] Job #62 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Skin_Reaction --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_62.log
+
+[2025-11-26 01:45:50.401790] Job #64 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Central_1uM --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_64.log
+
+[2025-11-26 02:04:13.937333] Job #1 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Caco2_Wang --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_1.log
+
+[2025-11-26 02:04:14.196313] Job #5 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name HIA_Hou --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_5.log
+
+[2025-11-26 02:04:14.214038] Job #3 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Pgp_Broccatelli --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_3.log
+
+[2025-11-26 02:04:14.226039] Job #4 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Pgp_Broccatelli --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_4.log
+
+[2025-11-26 02:04:14.248643] Job #6 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name HIA_Hou --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_6.log
+
+[2025-11-26 02:04:14.261396] Job #7 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Bioavailability_Ma --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_7.log
+
+[2025-11-26 02:04:14.399586] Job #8 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Bioavailability_Ma --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_8.log
+
+[2025-11-26 02:04:14.437558] Job #2 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Caco2_Wang --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_2.log
+
+[2025-11-26 02:04:19.451890] Job #9 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Solubility_AqSolDB --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_9.log
+
+[2025-11-26 02:04:19.524989] Job #11 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Lipophilicity_AstraZeneca --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_11.log
+
+[2025-11-26 02:04:19.920522] Job #15 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name PAMPA_NCATS --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_15.log
+
+[2025-11-26 02:04:19.923107] Job #12 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Lipophilicity_AstraZeneca --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_12.log
+
+[2025-11-26 02:04:19.948459] Job #16 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name PAMPA_NCATS --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_16.log
+
+[2025-11-26 02:04:20.045476] Job #14 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name HydrationFreeEnergy_FreeSolv --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_14.log
+
+[2025-11-26 02:04:20.220919] Job #13 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name HydrationFreeEnergy_FreeSolv --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_13.log
+
+[2025-11-26 02:04:20.282421] Job #10 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Solubility_AqSolDB --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_10.log
+
+[2025-11-26 02:04:25.038928] Job #18 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name VDss_Lombardo --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_18.log
+
+[2025-11-26 02:04:25.403300] Job #19 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name PPBR_AZ --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_19.log
+
+[2025-11-26 02:04:25.496097] Job #21 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name BBB_Martins --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_21.log
+
+[2025-11-26 02:04:25.496768] Job #17 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name VDss_Lombardo --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_17.log
+
+[2025-11-26 02:04:25.499170] Job #22 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name BBB_Martins --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_22.log
+
+[2025-11-26 02:04:25.799230] Job #23 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C9_Veith --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_23.log
+
+[2025-11-26 02:04:25.807248] Job #20 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name PPBR_AZ --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_20.log
+
+[2025-11-26 02:04:25.883667] Job #24 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C9_Veith --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_24.log
+
+[2025-11-26 02:04:30.682847] Job #25 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C9_Substrate_CarbonMangels --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_25.log
+
+[2025-11-26 02:04:30.995919] Job #27 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP3A4_Veith --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_27.log
+
+[2025-11-26 02:04:31.233751] Job #28 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP3A4_Veith --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_28.log
+
+[2025-11-26 02:04:31.235976] Job #29 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2D6_Veith --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_29.log
+
+[2025-11-26 02:04:31.323930] Job #26 Failed (GPU 3)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C9_Substrate_CarbonMangels --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_26.log
+
+[2025-11-26 02:04:31.407221] Job #31 Failed (GPU 1)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2D6_Substrate_CarbonMangels --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_31.log
+
+[2025-11-26 02:04:31.409534] Job #30 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2D6_Veith --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_30.log
+
+[2025-11-26 02:04:31.413433] Job #32 Failed (GPU 2)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2D6_Substrate_CarbonMangels --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_32.log
+
+[2025-11-26 09:04:59.982950] Job #2 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Caco2_Wang --features basic phys --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_2.log
+
+[2025-11-26 10:04:02.134740] Job #1 Failed (GPU 0)
+Command: python workspace/src/scripts/optimize_with_optuna.py --dataset_name Caco2_Wang --features basic --n_trials 30 --output_dir workspace/output/optimization
+Log: logs/job_1.log
+

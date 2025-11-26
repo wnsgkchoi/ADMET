@@ -1,31 +1,76 @@
 import os
 import argparse
 import pickle
+import json
 import numpy as np
 import pandas as pd
-from tdc.single_pred import Tox
-from tdc.utils import retrieve_label_name_list
+import random
+from collections import defaultdict
+from tqdm import tqdm
+from rdkit import Chem
+from rdkit.Chem.Scaffolds import MurckoScaffold
+from tdc.single_pred import Tox, ADME
 from tdc.benchmark_group import admet_group
+from tdc.utils import retrieve_label_name_list
+
+# Initialize ADMET Group once to check for membership
+try:
+    ADMET_GROUP = admet_group(path='workspace/benchmark/tdc_cache')
+    ADMET_DATASETS = set(name.lower() for name in ADMET_GROUP.dataset_names)
+except Exception as e:
+    print(f"Warning: Could not initialize ADMET Benchmark Group: {e}")
+    ADMET_GROUP = None
+    ADMET_DATASETS = set()
 
 def ensure_dir(path):
     if not os.path.exists(path):
         os.makedirs(path)
 
-def generate_splits(dataset_name, output_dir, num_seeds=5):
+def get_tdc_class(category):
+    """카테고리에 따른 TDC 클래스 반환"""
+    if category == 'Toxicity':
+        return Tox
+    elif category in ['Absorption', 'Distribution', 'Metabolism', 'Excretion']:
+        return ADME
+    else:
+        raise ValueError(f"Unknown category: {category}")
+
+def generate_scaffold(smiles, include_chirality=False):
+    mol = Chem.MolFromSmiles(smiles)
+    if not mol:
+        return smiles
+    return MurckoScaffold.MurckoScaffoldSmiles(mol=mol, includeChirality=include_chirality)
+
+def generate_splits(dataset_name, category, output_dir, num_seeds=5):
     """
     TDC 데이터셋을 로드하고 5개의 시드에 대해 Scaffold Split을 수행하여 인덱스를 저장합니다.
+    단, Test Set은 Seed 1의 결과를 고정하고, Train/Valid만 시드에 따라 변경합니다.
     """
-    print(f"Processing {dataset_name}...")
+    print(f"Processing {dataset_name} ({category})...")
     
-    # 1. 데이터 로드 (TDC Tox)
-    # AMES는 Tox 카테고리에 속함. 필요시 다른 카테고리(ADME) 확장 가능
+    # 1. 데이터 로드
     try:
-        data = Tox(name=dataset_name)
+        Loader = get_tdc_class(category)
+        
+        # hERG_Central 예외 처리
+        if dataset_name.startswith('hERG_Central'):
+            if dataset_name == 'hERG_Central_inhib':
+                data = Loader(name='hERG_Central', label_name='hERG_inhib')
+            elif dataset_name == 'hERG_Central_10uM':
+                data = Loader(name='hERG_Central', label_name='hERG_at_10uM')
+            elif dataset_name == 'hERG_Central_1uM':
+                data = Loader(name='hERG_Central', label_name='hERG_at_1uM')
+            else:
+                # Fallback
+                data = Loader(name=dataset_name)
+        else:
+            data = Loader(name=dataset_name)
+            
     except Exception as e:
         print(f"Error loading {dataset_name}: {e}")
         return
 
-        # 전체 데이터 가져오기 (인덱스 매핑을 위해 필요)
+    # 전체 데이터 가져오기 (인덱스 매핑을 위해 필요)
     df = data.get_data()
     print(f"  - Original columns: {df.columns.tolist()}")
     
@@ -45,114 +90,159 @@ def generate_splits(dataset_name, output_dir, num_seeds=5):
     print(f"  - Saved raw data to {data_path} (Shape: {df.shape})")
 
     # 2. Split 생성 및 저장
-    # from tdc.utils import split_data_by_scaffold # Removed incorrect import
-    
     split_indices = {}
     
     # 효율성을 위해 SMILES -> Index 맵 생성
-    # df[smiles_col]이 Series가 아니라 DataFrame일 수 있음 (컬럼 이름 중복 시)
-    # 따라서 values를 사용하여 확실하게 1차원 배열로 가져옴
     smiles_list = df[smiles_col].values
-    if len(smiles_list.shape) > 1:
-         # 만약 컬럼이 중복되어 2차원이면 첫 번째 컬럼(보통 ID가 아니라 SMILES일 가능성 높음, 하지만 확인 필요)
-         # TDC에서 Drug_ID와 Drug가 둘 다 있으면 Drug가 SMILES임.
-         # 위에서 Drug가 있으면 Drug를 썼으므로, 중복된 Drug가 있을 수 있음.
-         # 하지만 get_data() 원본에는 중복이 없을 것임. 아까 중복은 rename 때문이었음.
-         pass
-
-    smiles_to_idx = {s: i for i, s in enumerate(smiles_list)}
-    
-    for seed in range(1, num_seeds + 1):
-        # TDC get_split 사용
-        split = data.get_split(method='scaffold', seed=seed, frac=[0.7, 0.1, 0.2])
+    smiles_to_idx = defaultdict(list)
+    for i, s in enumerate(smiles_list):
+        smiles_to_idx[s].append(i)
         
-        run_indices = {}
-        for split_name in ['train', 'valid', 'test']:
-            split_df = split[split_name]
-            # split_df에도 smiles_col이 있어야 함
-            if smiles_col not in split_df.columns:
-                 # split_df는 표준화된 컬럼을 가질 수 있음. 보통 Drug_ID, Drug, Y
-                 if 'Drug' in split_df.columns:
-                     split_smiles_col = 'Drug'
-                 else:
-                     split_smiles_col = 'Drug_ID'
+    # Helper to get indices from a DataFrame
+    def get_indices_from_df(target_df):
+        indices = []
+        if smiles_col not in target_df.columns:
+             if 'Drug' in target_df.columns:
+                 target_smiles_col = 'Drug'
+             else:
+                 target_smiles_col = 'Drug_ID'
+        else:
+            target_smiles_col = smiles_col
+            
+        for s in target_df[target_smiles_col]:
+            if s in smiles_to_idx:
+                # If multiple indices (duplicates), add all of them? 
+                # Usually benchmark splits are unique. 
+                # But if raw data has duplicates, we should be careful.
+                # We take the first one that hasn't been used? 
+                # For simplicity, take all matching indices.
+                indices.extend(smiles_to_idx[s])
             else:
-                split_smiles_col = smiles_col
-            
-            indices = []
-            for s in split_df[split_smiles_col]:
-                if s in smiles_to_idx:
-                    indices.append(smiles_to_idx[s])
-                else:
-                    print(f"Warning: SMILES not found in original data: {s[:20]}...")
-            
-            run_indices[split_name] = indices
-            
-        split_indices[f'seed_{seed}'] = run_indices
-        print(f"  - Seed {seed}: Train={len(run_indices['train'])}, Valid={len(run_indices['valid'])}, Test={len(run_indices['test'])}")
+                # Try canonicalizing?
+                try:
+                    canon_s = Chem.MolToSmiles(Chem.MolFromSmiles(s))
+                    found = False
+                    for k in smiles_to_idx:
+                        if Chem.MolToSmiles(Chem.MolFromSmiles(k)) == canon_s:
+                            indices.extend(smiles_to_idx[k])
+                            found = True
+                            break
+                    if not found:
+                        print(f"Warning: SMILES not found in original data: {s[:20]}...")
+                except:
+                     print(f"Warning: SMILES not found and cannot canonicalize: {s[:20]}...")
+        return sorted(list(set(indices)))
 
+    # Determine Test Set
+    test_indices = []
+    is_benchmark = False
+    
+    if ADMET_GROUP and dataset_name.lower() in ADMET_DATASETS:
+        print(f"  - {dataset_name} is in TDC ADMET Benchmark Group. Fetching official split...")
+        try:
+            benchmark = ADMET_GROUP.get(dataset_name)
+            test_df = benchmark['test']
+            test_indices = get_indices_from_df(test_df)
+            is_benchmark = True
+            print(f"  - Fetched {len(test_indices)} test indices from Benchmark.")
+        except Exception as e:
+            print(f"  - Failed to fetch benchmark split ({e}). Falling back to Seed 1 Scaffold Split.")
+            
+    if not is_benchmark:
+        print("  - Generating Master Split (Seed 1) for Test Set...")
+        master_split = data.get_split(method='scaffold', seed=1, frac=[0.7, 0.1, 0.2])
+        test_indices = get_indices_from_df(master_split['test'])
 
-    # 2. Split 생성 및 저장
-    # from tdc.utils import split_data_by_scaffold # Removed incorrect import
+    # Identify Train+Valid Indices (All - Test)
+    all_indices = set(range(len(df)))
+    test_set_indices = set(test_indices)
+    dev_indices = list(all_indices - test_set_indices)
+    
+    print(f"  - Total: {len(all_indices)}, Test: {len(test_indices)}, Dev (Train+Valid): {len(dev_indices)}")
+    
+    # Pre-calculate scaffolds for dev set to save time
+    print("  - Calculating scaffolds for Dev Set...")
+    dev_scaffolds = defaultdict(list)
+    for idx in tqdm(dev_indices, desc="Scaffold Gen"):
+        s = smiles_list[idx]
+        scaff = generate_scaffold(s, include_chirality=True)
+        dev_scaffolds[scaff].append(idx)
+    
+    # Sort scaffolds by size (descending) to be consistent with typical scaffold split
+    # But here we want to shuffle them for random scaffold split
+    # We convert to list of (scaffold, indices)
+    all_scaffold_sets = [indices for scaff, indices in dev_scaffolds.items()]
+    # Sort by smallest index in the group to be deterministic
+    all_scaffold_sets.sort(key=lambda x: min(x))
 
-    
-    # TDC의 split_data는 내부적으로 random state를 사용하지 않고 고정된 scaffold split을 제공할 수 있음.
-    # 하지만 Benchmark Group 가이드라인에 따라 5번의 run을 위해 seed를 바꿔가며 split을 생성해야 함.
-    # TDC의 scaffold split은 결정적(deterministic)일 수 있으므로, 
-    # 여기서는 TDC Benchmark Group의 표준 방식을 따르거나, 
-    # 만약 scaffold split이 seed에 영향을 받지 않는다면 
-    # Random Split을 5번 하거나, Scaffold Split 1회 + Random Initialization 5회 전략을 세워야 함.
-    
-    # *중요*: TDC Leaderboard는 보통 "Scaffold Split" 1개를 고정으로 사용하고, 
-    # 모델의 초기화 Seed를 5번 바꿔서 평균을 냄.
-    # 하지만 사용자의 요청은 "서로 다른 5개의 split"임.
-    # Scaffold Split은 분자 구조에 기반하므로 Seed에 따라 달라지지 않는 것이 일반적임 (Deterministic).
-    # 그러나 Random Scaffold Split(Scaffold를 섞어서 나누는 방식)이라면 Seed 영향이 있음.
-    
-    # 여기서는 TDC의 `get_split(method='scaffold', seed=seed)`를 사용하여 
-    # Seed에 따라 달라지는지 확인하고 저장함.
-    
-    split_indices = {}
-    
     for seed in range(1, num_seeds + 1):
-        # TDC get_split 사용
-        # method='scaffold'는 seed에 따라 train/val/test 구성이 달라질 수 있음 (scaffold set을 어떻게 분배하느냐에 따라)
-        split = data.get_split(method='scaffold', seed=seed, frac=[0.7, 0.1, 0.2])
-        
-        # Debugging: Check columns and content
-        if seed == 1:
-            print(f"DEBUG: Split keys: {split.keys()}")
-            print(f"DEBUG: Train columns: {split['train'].columns}")
-            print(f"DEBUG: Train head: {split['train'].head()}")
-            print(f"DEBUG: Raw DF head: {df.head()}")
-
-        # 인덱스 추출 (Drug 컬럼 기준 매핑이 가장 안전하지만, 여기서는 데이터프레임의 인덱스를 사용하지 않고
-        # SMILES 문자열을 Key로 사용하여 매핑하는 것이 안전함. 
-        # 하지만 TDC get_split은 데이터를 쪼개서 리턴하므로, 원본 df에서의 인덱스를 찾아야 함.)
-        
-        # 효율성을 위해 SMILES -> Index 맵 생성
-        smiles_to_idx = {smiles: idx for idx, smiles in enumerate(df['Drug'])}
-        
         run_indices = {}
-        for split_name in ['train', 'valid', 'test']:
-            split_df = split[split_name]
-            indices = [smiles_to_idx[s] for s in split_df['Drug'] if s in smiles_to_idx]
-            run_indices[split_name] = indices
+        run_indices['test'] = test_indices # Fixed Test Set
+        
+        # Re-split Dev Set
+        # Shuffle scaffolds
+        current_scaffold_sets = all_scaffold_sets[:]
+        
+        if seed == 1:
+             # Deterministic Scaffold Split (Sort by size)
+             # Already sorted by size in all_scaffold_sets
+             pass
+        else:
+             # Random Scaffold Split
+             random.seed(seed)
+             random.shuffle(current_scaffold_sets)
+        
+        # Fill Train (7/8 of Dev)
+        # Dev is 80% of total. Train is 70% of total.
+        # So Train target is len(dev_indices) * (7/8)
+        train_cutoff = len(dev_indices) * (7.0 / 8.0)
+        
+        train_idx = []
+        valid_idx = []
+        
+        for scaffold_set in current_scaffold_sets:
+            if len(train_idx) + len(scaffold_set) <= train_cutoff:
+                train_idx.extend(scaffold_set)
+            else:
+                valid_idx.extend(scaffold_set)
+        
+        run_indices['train'] = train_idx
+        run_indices['valid'] = valid_idx
             
         split_indices[f'seed_{seed}'] = run_indices
-        print(f"  - Seed {seed}: Train={len(run_indices['train'])}, Valid={len(run_indices['valid'])}, Test={len(run_indices['test'])}")
+        split_type = "Standard Scaffold" if seed == 1 else "Random Scaffold (Fixed Test)"
+        print(f"  - Seed {seed} [{split_type}]: Train={len(run_indices['train'])}, Valid={len(run_indices['valid'])}, Test={len(run_indices['test'])}")
 
-    # 인덱스 파일 저장
-    idx_path = os.path.join(output_dir, f"{dataset_name}_splits.pkl")
-    with open(idx_path, 'wb') as f:
+    # Pickle 저장
+    pkl_path = os.path.join(output_dir, f"{dataset_name}_splits.pkl")
+    with open(pkl_path, 'wb') as f:
         pickle.dump(split_indices, f)
-    print(f"  - Saved split indices to {idx_path}")
+    print(f"  - Saved splits to {pkl_path}")
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config_path', type=str, default='configs/dataset_config.json')
+    parser.add_argument('--output_dir', type=str, default='workspace/benchmark/data')
+    args = parser.parse_args()
+    
+    ensure_dir(args.output_dir)
+    
+    with open(args.config_path, 'r') as f:
+        config = json.load(f)
+        
+    datasets = config['datasets']
+    
+    for name, info in datasets.items():
+        # Check if files already exist
+        data_path = os.path.join(args.output_dir, f"{name}_data.csv")
+        split_path = os.path.join(args.output_dir, f"{name}_splits.pkl")
+        
+        if os.path.exists(data_path) and os.path.exists(split_path):
+             print(f"Skipping {name} (Already exists)")
+             continue
+             
+        category = info['category']
+        generate_splits(name, category, args.output_dir)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', type=str, default='AMES', help='Dataset name (e.g., AMES)')
-    parser.add_argument('--output_dir', type=str, default='workspace/benchmark/data', help='Output directory')
-    args = parser.parse_args()
-
-    ensure_dir(args.output_dir)
-    generate_splits(args.dataset, args.output_dir)
+    main()

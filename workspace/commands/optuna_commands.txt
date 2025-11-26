@@ -1,0 +1,64 @@
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Caco2_Wang --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Caco2_Wang --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Pgp_Broccatelli --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Pgp_Broccatelli --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name HIA_Hou --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name HIA_Hou --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Bioavailability_Ma --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Bioavailability_Ma --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Solubility_AqSolDB --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Solubility_AqSolDB --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Lipophilicity_AstraZeneca --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Lipophilicity_AstraZeneca --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name HydrationFreeEnergy_FreeSolv --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name HydrationFreeEnergy_FreeSolv --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name PAMPA_NCATS --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name PAMPA_NCATS --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name VDss_Lombardo --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name VDss_Lombardo --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name PPBR_AZ --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name PPBR_AZ --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name BBB_Martins --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name BBB_Martins --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C9_Veith --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C9_Veith --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C9_Substrate_CarbonMangels --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C9_Substrate_CarbonMangels --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP3A4_Veith --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP3A4_Veith --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2D6_Veith --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2D6_Veith --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2D6_Substrate_CarbonMangels --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2D6_Substrate_CarbonMangels --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C19_Veith --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP2C19_Veith --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP3A4_Substrate_CarbonMangels --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP3A4_Substrate_CarbonMangels --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP1A2_Veith --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name CYP1A2_Veith --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Clearance_Hepatocyte_AZ --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Clearance_Hepatocyte_AZ --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Half_Life_Obach --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Half_Life_Obach --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Clearance_Microsome_AZ --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Clearance_Microsome_AZ --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Carcinogens_Lagunin --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Carcinogens_Lagunin --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Central_inhib --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Central_inhib --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Karim --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Karim --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name ClinTox --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name ClinTox --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name LD50_Zhu --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name LD50_Zhu --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Central_10uM --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Central_10uM --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name DILI --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name DILI --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Skin_Reaction --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name Skin_Reaction --features basic phys --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Central_1uM --features basic --n_trials 50 --output_dir workspace/output/optimization
+python workspace/src/scripts/optimize_with_optuna.py --dataset_name hERG_Central_1uM --features basic phys --n_trials 50 --output_dir workspace/output/optimization
