@@ -1,0 +1,9 @@
+Seed,Model,MAE,RMSE,R2,Best_Params
+seed_1,CatBoost,0.6271,0.8984,0.2760,"{'bootstrap_type': 'Bernoulli', 'learning_rate': 0.03301070592345165, 'iterations': 614, 'depth': 8, 'l2_leaf_reg': 1.4303451430750271, 'random_strength': 0.4712454681716194, 'subsample': 0.9800501219078389}"
+seed_2,XGBoost,0.5026,0.6723,0.4519,"{'learning_rate': 0.04968103971831889, 'n_estimators': 906, 'max_depth': 8, 'min_child_weight': 3, 'subsample': 0.7798382781284371, 'colsample_bytree': 0.8556065191832546, 'gamma': 0.5074264530597067, 'reg_alpha': 1.2500717974929767e-08, 'reg_lambda': 0.008654558081316122}"
+seed_3,CatBoost,0.5766,0.7844,0.3780,"{'bootstrap_type': 'MVS', 'learning_rate': 0.057131111271933016, 'iterations': 571, 'depth': 11, 'l2_leaf_reg': 3.6996984650069455, 'random_strength': 0.49291369576870303, 'subsample': 0.7090685969753316}"
+seed_4,CatBoost,0.5111,0.7254,0.4487,"{'bootstrap_type': 'MVS', 'learning_rate': 0.05900337066532223, 'iterations': 720, 'depth': 7, 'l2_leaf_reg': 10.41990384513797, 'random_strength': 3.2059264411939923, 'subsample': 0.8191566118483353}"
+seed_5,CatBoost,0.5221,0.7683,0.3555,"{'bootstrap_type': 'Bernoulli', 'learning_rate': 0.030420497167331535, 'iterations': 785, 'depth': 12, 'l2_leaf_reg': 12.474422653856342, 'random_strength': 3.131337526717858, 'subsample': 0.7259925583639266}"
+
+Final Summary (Average of Best Models across 5 seeds):
+Mean Best MAE: 0.5479 ± 0.0473

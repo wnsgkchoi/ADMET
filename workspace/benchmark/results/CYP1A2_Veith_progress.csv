@@ -1,0 +1,9 @@
+Seed,Model,AUROC,F1,Accuracy,Precision,Recall,Specificity,AUPRC,Best_Params
+seed_1,CatBoost,0.9320,0.8526,0.8578,0.8456,0.8596,0.8561,0.9276,"{'bootstrap_type': 'Bernoulli', 'learning_rate': 0.04779758521702435, 'iterations': 694, 'depth': 7, 'l2_leaf_reg': 2.9871488761488796, 'random_strength': 1.843113603885258, 'subsample': 0.9750880744928725}"
+seed_2,CatBoost,0.9398,0.8428,0.8617,0.8436,0.8421,0.8772,0.9277,"{'bootstrap_type': 'Bernoulli', 'learning_rate': 0.047424180832202394, 'iterations': 792, 'depth': 7, 'l2_leaf_reg': 5.06522411629585, 'random_strength': 7.802916677191161, 'subsample': 0.8696124812626758}"
+seed_3,XGBoost,0.9392,0.8510,0.8649,0.8631,0.8392,0.8868,0.9310,"{'learning_rate': 0.033327462046252976, 'n_estimators': 914, 'max_depth': 7, 'min_child_weight': 13, 'subsample': 0.5377786371687007, 'colsample_bytree': 0.5869494741312197, 'gamma': 2.869462076138889, 'reg_alpha': 3.9527535674436176e-08, 'reg_lambda': 3.40363830571635e-07}"
+seed_4,XGBoost,0.9238,0.8408,0.8466,0.8373,0.8442,0.8489,0.9233,"{'learning_rate': 0.02314414460090113, 'n_estimators': 797, 'max_depth': 7, 'min_child_weight': 9, 'subsample': 0.7117947590766268, 'colsample_bytree': 0.9404719421684544, 'gamma': 1.7899402930444075, 'reg_alpha': 0.0017451391616909453, 'reg_lambda': 1.4818454803715565e-06}"
+seed_5,CatBoost,0.9251,0.8373,0.8530,0.8500,0.8250,0.8767,0.9161,"{'bootstrap_type': 'Bayesian', 'learning_rate': 0.08601375780796536, 'iterations': 939, 'depth': 10, 'l2_leaf_reg': 6.295048179079576, 'random_strength': 9.763805908599352, 'bagging_temperature': 1.8738214371689919}"
+
+Final Summary (Average of Best Models across 5 seeds):
+Mean Best AUROC: 0.9320 ± 0.0067

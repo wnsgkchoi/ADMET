@@ -1,0 +1,5 @@
+Seed,Model,MAE,RMSE,R2,Best_Params
+seed_1,CatBoost,0.8805,1.1954,0.8489,"{'bootstrap_type': 'Bernoulli', 'learning_rate': 0.10887830963080009, 'iterations': 709, 'depth': 5, 'l2_leaf_reg': 13.84711034030434, 'random_strength': 0.06671462089118951, 'subsample': 0.7676980167511678}"
+seed_2,CatBoost,0.8573,1.2011,0.8474,"{'bootstrap_type': 'Bayesian', 'learning_rate': 0.2716269412389713, 'iterations': 616, 'depth': 9, 'l2_leaf_reg': 11.286043867998718, 'random_strength': 6.076374992922199, 'bagging_temperature': 0.19712608663898323}"
+seed_3,CatBoost,0.8692,1.2339,0.8390,"{'bootstrap_type': 'Bernoulli', 'learning_rate': 0.014641597479323353, 'iterations': 694, 'depth': 8, 'l2_leaf_reg': 9.847473652448802, 'random_strength': 8.65918283409001, 'subsample': 0.5675863899758213}"
+seed_4,CatBoost,0.8742,1.1986,0.8481,"{'bootstrap_type': 'Bayesian', 'learning_rate': 0.050979228493047465, 'iterations': 753, 'depth': 5, 'l2_leaf_reg': 3.285932570578524, 'random_strength': 3.5923360753386, 'bagging_temperature': 1.6113722706572355}"

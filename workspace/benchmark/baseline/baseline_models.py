@@ -51,6 +51,14 @@ def evaluate_model_classification(y_true, y_pred_proba):
         'TP': tp, 'TN': tn, 'FP': fp, 'FN': fn
     }
 
+def evaluate_model_regression(y_true, y_pred):
+    """회귀 모델 종합 평가 (MAE, RMSE, R2)"""
+    return {
+        'MAE': mean_absolute_error(y_true, y_pred),
+        'RMSE': np.sqrt(mean_squared_error(y_true, y_pred)),
+        'R2': r2_score(y_true, y_pred)
+    }
+
 def create_objective(X_train, y_train, X_valid, y_valid, task_type):
     def objective_func(trial, model_name):
         try:
@@ -68,7 +76,7 @@ def create_objective(X_train, y_train, X_valid, y_valid, task_type):
                     booster = 'gbtree' # ADMET_Ver4.ipynb uses default (gbtree)
                     params = {
                         'objective': 'binary:logistic', 'random_state': 42, 'n_jobs': -1,
-                        'scale_pos_weight': scale_pos_weight, 'tree_method':'hist', 'device': 'cuda',
+                        'scale_pos_weight': scale_pos_weight, 'tree_method':'hist', 'device': 'cpu',
                         'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.3, log=True),
                         'n_estimators': trial.suggest_int('n_estimators', 100, 1000),
                         'max_depth': trial.suggest_int('max_depth', 3, 12),
@@ -131,7 +139,7 @@ def create_objective(X_train, y_train, X_valid, y_valid, task_type):
                     bootstrap_type = trial.suggest_categorical('bootstrap_type', ['Bayesian', 'Bernoulli', 'MVS'])
                     params = {
                         'random_state':42,'logging_level':'Silent','loss_function':'Logloss','scale_pos_weight':scale_pos_weight,
-                        'task_type': 'GPU',
+                        'task_type': 'CPU',
                         'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.3, log=True),
                         'iterations': trial.suggest_int('iterations', 100, 1000),
                         'depth': trial.suggest_int('depth', 3, 12),
@@ -185,8 +193,109 @@ def create_objective(X_train, y_train, X_valid, y_valid, task_type):
                 trial.set_user_attr('val_auroc', val_auroc)
                 return float(val_auroc)
 
+            elif task_type == 'regression':
+                if model_name == 'XGBoost':
+                    booster = 'gbtree'
+                    params = {
+                        'objective': 'reg:squarederror', 'random_state': 42, 'n_jobs': -1,
+                        'tree_method':'hist', 'device': 'cpu',
+                        'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.3, log=True),
+                        'n_estimators': trial.suggest_int('n_estimators', 100, 1000),
+                        'max_depth': trial.suggest_int('max_depth', 3, 12),
+                        'min_child_weight': trial.suggest_int('min_child_weight', 1, 20),
+                        'subsample': trial.suggest_float('subsample', 0.5, 1.0),
+                        'colsample_bytree': trial.suggest_float('colsample_bytree', 0.5, 1.0),
+                        'gamma': trial.suggest_float('gamma', 0.0, 5.0),
+                        'reg_alpha': trial.suggest_float('reg_alpha', 1e-8, 10.0, log=True),
+                        'reg_lambda': trial.suggest_float('reg_lambda', 1e-8, 10.0, log=True),
+                        'booster': booster
+                    }
+                    model = XGBRegressor(**params)
+                    try:
+                        safe_fit(model, X_train, y_train, X_valid, y_valid, early_stop=50, verbose=False)
+                    except Exception:
+                        model.fit(X_train, y_train)
+
+                elif model_name == 'LightGBM':
+                    boosting_type = 'gbdt'
+                    params = {
+                        'objective':'regression','metric':'mae','random_state':42,'verbosity':-1,'n_jobs':-1,
+                        'device': 'cpu',
+                        'learning_rate':trial.suggest_float('learning_rate',0.01,0.3,log=True),
+                        'n_estimators':trial.suggest_int('n_estimators',100,1000),
+                        'num_leaves':trial.suggest_int('num_leaves',20,300),
+                        'max_depth':trial.suggest_int('max_depth',3,15),
+                        'min_child_samples':trial.suggest_int('min_child_samples',5,100),
+                        'subsample':trial.suggest_float('subsample',0.5,1.0),
+                        'colsample_bytree':trial.suggest_float('colsample_bytree',0.5,1.0),
+                        'feature_fraction': trial.suggest_float('feature_fraction', 0.5, 1.0),
+                        'bagging_fraction': trial.suggest_float('bagging_fraction', 0.5, 1.0),
+                        'bagging_freq': trial.suggest_int('bagging_freq', 0, 10),
+                        'lambda_l1': trial.suggest_float('lambda_l1', 1e-8, 10.0, log=True),
+                        'lambda_l2': trial.suggest_float('lambda_l2', 1e-8, 10.0, log=True),
+                        'min_split_gain':trial.suggest_float('min_split_gain',0.0,1.0),
+                        'max_bin': trial.suggest_int('max_bin', 63, 255),
+                        'boosting_type': boosting_type
+                    }
+                    model = LGBMRegressor(**params)
+                    try:
+                        safe_fit(model, X_train, y_train, X_valid, y_valid, early_stop=50, verbose=False)
+                    except Exception:
+                        model.fit(X_train, y_train)
+
+                elif model_name == 'CatBoost':
+                    bootstrap_type = trial.suggest_categorical('bootstrap_type', ['Bayesian', 'Bernoulli', 'MVS'])
+                    params = {
+                        'random_state':42,'logging_level':'Silent','loss_function':'MAE',
+                        'task_type': 'CPU',
+                        'learning_rate': trial.suggest_float('learning_rate', 0.01, 0.3, log=True),
+                        'iterations': trial.suggest_int('iterations', 100, 1000),
+                        'depth': trial.suggest_int('depth', 3, 12),
+                        'l2_leaf_reg': trial.suggest_float('l2_leaf_reg', 1.0, 15.0),
+                        'bootstrap_type': bootstrap_type,
+                        'random_strength': trial.suggest_float('random_strength', 0.0, 10.0)
+                    }
+                    if bootstrap_type == 'Bayesian':
+                        params['bagging_temperature'] = trial.suggest_float('bagging_temperature', 0.0, 2.0)
+                    else:
+                        params['subsample'] = trial.suggest_float('subsample', 0.5, 1.0)
+                    model = CatBoostRegressor(**params)
+                    try:
+                        safe_fit(model, X_train, y_train, X_valid, y_valid, early_stop=50, verbose=False)
+                    except Exception:
+                        model.fit(X_train, y_train)
+
+                else:  # RandomForestRegressor
+                    bootstrap = trial.suggest_categorical('rf_bootstrap', [True, False])
+                    params = {
+                        'random_state':42,'n_jobs':-1,
+                        'n_estimators':trial.suggest_int('n_estimators',100,1000),
+                        'max_depth':trial.suggest_int('max_depth',3,20),
+                        'min_samples_split':trial.suggest_int('min_samples_split',2,30),
+                        'min_samples_leaf':trial.suggest_int('min_samples_leaf',1,20),
+                        'max_features':trial.suggest_categorical('max_features',['sqrt','log2']),
+                        'ccp_alpha':trial.suggest_float('ccp_alpha',0.0,0.1),
+                        'bootstrap': bootstrap
+                    }
+                    if bootstrap:
+                        use_max_samples = trial.suggest_categorical('rf_use_max_samples', [False, True])
+                        if use_max_samples:
+                            params['max_samples'] = trial.suggest_float('rf_max_samples', 0.5, 1.0)
+                    model = RandomForestRegressor(**params)
+                    model.fit(X_train, y_train)
+
+                # compute MAE for train & valid (Primary Metric)
+                tr_pred = model.predict(X_train)
+                val_pred = model.predict(X_valid)
+                tr_mae = mean_absolute_error(y_train, tr_pred)
+                val_mae = mean_absolute_error(y_valid, val_pred)
+                
+                trial.set_user_attr('train_mae', tr_mae)
+                trial.set_user_attr('val_mae', val_mae)
+                return float(val_mae) # Minimize MAE
+
         except Exception as e:
             print(f"  - ⚠️ 최적화 예외 발생 (model={model_name}, task={task_type}): {e}")
-            return 0.0
+            return float('inf') if task_type == 'regression' else 0.0
 
     return objective_func
